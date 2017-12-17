@@ -5,6 +5,7 @@ import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 import 'package:sqljocky5/sqljocky.dart';
 import 'package:sqljocky5/utils.dart';
 import 'dart:async';
+import 'dart:convert';
 
 @app.Route("/data/")
 helloWorld() {
@@ -28,8 +29,9 @@ Future<String> getDataFromDB() async {
   var results = await pool.query('select iduser, firstname,lastname from user');
   //todo get data from db.
   String response;
-  await results.forEach((row) {
-    response = 'FirstName: ${row[1]}, LastName: ${row[2]}';
+  await results.forEach((row) { 
+     response =JSON.encode([ "FirstName: ${row[1]}"," LastName: ${row[2]}"]);
+ // response =JSON.encode(["1", "2", "bar"]);
   });
   return response;
 
