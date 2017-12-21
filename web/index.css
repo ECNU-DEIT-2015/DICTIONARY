@@ -33,4 +33,22 @@ body {
     -webkit-user-select: none;
     user-select: none;
   }
-  
+  #getData {
+    font-size: 16pt;
+    text-align: center;
+    margin-left: center;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #search {
+    font-size: 16pt;
+    text-align: left;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #search_word {
+    font-size: 16pt;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+  }
