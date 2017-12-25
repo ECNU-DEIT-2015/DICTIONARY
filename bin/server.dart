@@ -7,6 +7,7 @@ import 'package:sqljocky5/utils.dart';
 import 'dart:async';
 import 'dart:convert';
 
+
 @app.Route("/data/")
 helloWorld() {
   return getDataFromDB();
@@ -18,24 +19,47 @@ addUser(@app.Body(app.TEXT) String userData) {
   return data;
 }
 
+@app.Route("/data/addword", methods: const [app.POST])
+addword(@app.Body(app.TEXT) String userData) {
+  String data = userData;
+  return getWordFromDB(data);
+}
+
+Future<String> getWordFromDB(String data) async {
+  var pool = new ConnectionPool(
+      host: 'www.muedu.org',
+      port: 3306,
+      user: 'deit-2015',
+      password: 'deit@2015!',
+      db: 'project_2015_1',
+      max: 5);
+  var results = await pool.query("select word, times from words where word='" + data + "' ");
+  //todo get data from db.
+  String response;
+  await results.forEach((row) { 
+
+     response =JSON.encode(["word: ${row[0]}","times: ${row[1]}"]);
+  }); 
+  return response;
+}
+
 Future<String> getDataFromDB() async {
   var pool = new ConnectionPool(
       host: 'www.muedu.org',
       port: 3306,
       user: 'deit-2015',
       password: 'deit@2015!',
-      db: 'project_2015_example',
+      db: 'project_2015_1',
       max: 5);
-  var results = await pool.query('select iduser, firstname,lastname from user');
+  var results = await pool.query('select exchange, times from words where ID=136');
   //todo get data from db.
   String response;
   await results.forEach((row) { 
-     response =JSON.encode([ "FirstName: ${row[1]}"," LastName: ${row[2]}"]);
- // response =JSON.encode(["1", "2", "bar"]);
-  });
-  return response;
 
-  // return '''["name1","name2","name33","name43"]''';
+     response =JSON.encode(["exchange: ${row[0]}","times: ${row[1]}"]);
+  }); 
+  return response;
+  // response =JSON.encode(["1", "2", "bar"]);
 }
 
 @app.Route("/register/")
