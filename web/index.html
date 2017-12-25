@@ -4,21 +4,34 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Myconference</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DICTIONARY</title>
   <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-  <h1>Portmanteaux</h1>
+  
 
   <button id="getData">Get data</button>
-  </br></br>
-  <input id="search" type="text" />
-  <button id="search_word">search word</button>
 
+
+  </br></br>
+
+  <div id="container">
+    <div class="search bar6">
+      <div class="pform">
+          <input id="search" type="text" placeholder="请输入您要搜索的内容...">
+          <button id="search_word" type="submit" ></button>
+      </div>
+  </div>
   <ul id="wordList">
   </ul>
   <div id="response"></div>
+  </div>
+
+  <!--<input id="search" type="text" />-->
+ <!-- <button id="search_word">search word</button>-->
+
   <script type="application/dart" src="index.dart"></script>
   <script src="packages/browser/dart.js"></script>
 </body>
