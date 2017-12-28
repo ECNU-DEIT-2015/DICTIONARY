@@ -33,7 +33,7 @@ Future<String> getWordFromDB(String data) async {
       password: 'deit@2015!',
       db: 'project_2015_1',
       max: 5);
-  var results = await pool.query("select word, times from words where word='" + data + "' ");
+  var results = await pool.query("select words.word, means.means from words,means where word='" + data + "' and words.ID=means.wordID ");
   //todo get data from db.
   String response;
   await results.forEach((row) { 
@@ -51,14 +51,21 @@ Future<String> getDataFromDB() async {
       password: 'deit@2015!',
       db: 'project_2015_1',
       max: 5);
-  var results = await pool.query('select exchange, times from words where ID=136');
+  var results = await pool.query('select words.word, means.means from words,means where word="control" and words.ID=means.wordID');
   //todo get data from db.
   String response;
+  String means;
+
   await results.forEach((row) { 
 
-     response =JSON.encode(["exchange: ${row[0]}","times: ${row[1]}"]);
+   //  response =JSON.encode(["exchange: ${row[0]}","times: ${row[1]}"]);
+  
+      means=JSON.encode("${row[1]}");
+      means=means.replaceAll("u", "%u");
+    
+      response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
   }); 
-  return response;
+  return means;
   // response =JSON.encode(["1", "2", "bar"]);
 }
 
