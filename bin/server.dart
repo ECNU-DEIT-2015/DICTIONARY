@@ -62,7 +62,6 @@ Future<String> getDataFromDB() async {
   
       means=JSON.encode("${row[1]}");
       means=means.replaceAll("u", "%u");
-    
       response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
   }); 
   return means;
