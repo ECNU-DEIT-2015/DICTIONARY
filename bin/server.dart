@@ -1,85 +1,83 @@
-import 'package:redstone/redstone.dart' as app;
-import 'package:shelf/shelf.dart' as shelf;
-import 'package:shelf/shelf_io.dart' as shelf_io;
-import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
-import 'package:sqljocky5/sqljocky.dart';
-import 'package:sqljocky5/utils.dart';
+// Copyright (c) 2012, the Dart project authors.
+// Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code
+// is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 import 'dart:convert';
+import 'dart:html';
 
+import 'package:http/browser_client.dart';
+InputElement toDoInput;
 
-@app.Route("/data/")
-helloWorld() {
-  return getDataFromDB();
+main() async {
+  querySelector('#getData').onClick.listen(makeRequest);
+
+  querySelector('#search_word').onClick.listen(makePostRequest);
+
+  wordList = querySelector('#wordList');
 }
 
-@app.Route("/data/add", methods: const [app.POST])
-addUser(@app.Body(app.TEXT) String userData) {
-  String data = userData;
-  return data;
+var wordList;
+
+void handleError(Object error) {
+  wordList.children.add(new LIElement()..text = 'Request failed.');
 }
 
-@app.Route("/data/addword", methods: const [app.POST])
-addword(@app.Body(app.TEXT) String userData) {
-  String data = userData;
-  return getWordFromDB(data);
+Future makeRequest(Event e) async {
+  var path = 'http://localhost:90/data/';
+  try {
+    processString(await HttpRequest.getString(path));
+  } catch (e) {
+    print('Couldn\'t open $path');
+    handleError(e);
+  }
 }
 
-Future<String> getWordFromDB(String data) async {
-  var pool = new ConnectionPool(
-      host: 'www.muedu.org',
-      port: 3306,
-      user: 'deit-2015',
-      password: 'deit@2015!',
-      db: 'project_2015_1',
-      max: 5);
-  var results = await pool.query("select words.word, means.means from words,means where word='" + data + "' and words.ID=means.wordID ");
-  //todo get data from db.
-  String response;
-  await results.forEach((row) { 
-
-     response =JSON.encode(["word: ${row[0]}","times: ${row[1]}"]);
-  }); 
-  return response;
+void processString(String jsonString) {
+  List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
+  //List<String> a=JSON.getData()
+  for (int i = 0; i < portmanteaux.length; i++) {
+    wordList.children.add(new LIElement()..text = portmanteaux[i]);
+  }
 }
 
-Future<String> getDataFromDB() async {
-  var pool = new ConnectionPool(
-      host: 'www.muedu.org',
-      port: 3306,
-      user: 'deit-2015',
-      password: 'deit@2015!',
-      db: 'project_2015_1',
-      max: 5);
-  var results = await pool.query('select words.word, means.means from words,means where word="control" and words.ID=means.wordID');
-  //todo get data from db.
-  String response;
-  String means;
-
-  await results.forEach((row) { 
-
-   //  response =JSON.encode(["exchange: ${row[0]}","times: ${row[1]}"]);
-  
-      means=JSON.encode("${row[1]}");
-      means=means.replaceAll("u", "%u");
-    
-      response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
-  }); 
-  return means;
-  // response =JSON.encode(["1", "2", "bar"]);
+Future makeSearchRequest(Event e) async {
+  var path = 'http://localhost:90/data/';
+  try {
+    processSearchString(await HttpRequest.getString(path));
+  } catch (e) {
+    print('Couldn\'t open $path');
+    handleError(e);
+  }
 }
 
-@app.Route("/register/")
-register() => "you are now a member";
-main() {
-  Map corsHeaders1 = {
-    "Access-Control-Allow-Methods": "POST",
-    "Access-Control-Allow-Origin": "*",
-  };
-  shelf.Middleware middleware =
-      shelf_cors.createCorsHeadersMiddleware(corsHeaders: corsHeaders1);
-  app.setupConsoleLog();
-  app.addShelfMiddleware(middleware);
-  app.start(port: 90);
-  print("fefef");
+void processSearchString(String jsonString) {
+  List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
+  //List<String> a=JSON.getData()
+  for (int i = 0; i < portmanteaux.length; i++) {
+    wordList.children.add(new LIElement()..text = portmanteaux[i]);
+  }
+}
+
+
+Future makePostRequest(Event e) async {
+ 
+
+  toDoInput=querySelector('#search');
+  String element=toDoInput.value;
+  var url = 'http://localhost:90/data/addword';
+  HttpRequest
+      .request(url, method: 'POST', sendData:element )
+      .then((HttpRequest resp) {
+    // Do something with the response.
+    querySelector('#response').text = resp.responseText;
+  });
+    try {
+    processSearchString(await HttpRequest.getString(url));
+  } catch (e) {
+    print('Couldn\'t open $url');
+    handleError(e);
+  }
 }

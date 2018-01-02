@@ -96,6 +96,9 @@ input {
   */
   font-size: 20px;
 }
+button {
+  cursor: pointer;
+}
 
 
 ::-webkit-input-placeholder{
@@ -116,7 +119,6 @@ input {
   top: 0;
   right: 0;
   height: 42px;
-  cursor: pointer;
   position: absolute;
 }
 .bar6 button:before {
