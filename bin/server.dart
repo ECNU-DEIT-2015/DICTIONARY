@@ -12,8 +12,7 @@ import 'package:http/browser_client.dart';
 InputElement toDoInput;
 
 main() async {
-  querySelector('#getData').onClick.listen(makeRequest);
-
+  
   querySelector('#search_word').onClick.listen(makePostRequest);
 
   wordList = querySelector('#wordList');
