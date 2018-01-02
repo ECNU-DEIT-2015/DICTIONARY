@@ -63,22 +63,14 @@ void processSearchString(String jsonString) {
 
 
 Future makePostRequest(Event e) async {
- 
-
+  
   toDoInput=querySelector('#search');
   String element=toDoInput.value;
-  var url = 'http://localhost:90/data/addword';
+  String url = 'http://localhost:90/data/add';
   HttpRequest
       .request(url, method: 'POST', sendData:element )
       .then((HttpRequest resp) {
     // Do something with the response.
     querySelector('#response').text = resp.responseText;
   });
-    try {
-    processSearchString(await HttpRequest.getString(url));
-  } catch (e) {
-    print('Couldn\'t open $url');
-    handleError(e);
-  }
 }
-

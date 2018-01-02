@@ -34,69 +34,241 @@ body {
     -webkit-user-select: none;
     user-select: none;
   }
-*/
-  * {
-    box-sizing: border-box;
-}
+  #getData {
+    font-size: 16pt;
+    text-align: center;
+    margin-left: center;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #search {
+    font-size: 16pt;
+    text-align: left;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #search_word {
+    font-size: 16pt;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  */
 
+  *{
+    box-sizing: border-box;
+  }
+  
 body {
-    margin: 0;
-    padding: 0;
-    background: #F4F4F7;
-    font-weight: 500;
-    font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
+  margin: 0;
+  padding: 0;
+  background: #F4F4F7;
+  font-weight: 500;
+  font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
 }
 
 #container {
-    width: 500px;
-    height: 820px;
-    margin: 0 auto;
+  width: 500px;
+  height: 820px;
+  margin: 0 auto;
 }
 div.search {padding: 30px 0;}
 
 .pform {
-    position: relative;
-    width: 300px;
-    margin: 0 auto;
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
 }
 
 input, button {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 
 input {
-    width: 100%;
-    height: 42px;
-    padding-left: 13px;
+  width: 100%;
+  height: 42px;
+  padding-left: 13px;
+  padding-top:1px;
+  /*
+  height: 24px;
+  width: 535px;
+  */
+  font-size: 20px;
 }
 
-button {
-    height: 42px;
-    width: 42px;
-    cursor: pointer;
-    position: absolute;
-}
 
+::-webkit-input-placeholder{
+  font-size: 13px; 
+}
 .bar6 {background: #F9F0DA;}
 .bar6 input {
-    border: 2px solid #c5464a;
-    border-radius: 5px;
-    background: transparent;
-    top: 0;
-    right: 0;
+  border: 2px solid #c5464a;
+  border-radius: 5px;
+  background: transparent;
+  top: 0;
+  right: 0;
 }
 .bar6 button {
-    background: #c5464a;
-    border-radius: 0 5px 5px 0;
-    width: 60px;
-    top: 0;
-    right: 0;
+  background: #c5464a;
+  border-radius: 0 5px 5px 0;
+  width: 60px;
+  top: 0;
+  right: 0;
+  height: 42px;
+  cursor: pointer;
+  position: absolute;
 }
 .bar6 button:before {
-    content: "搜索";
-    font-size: 13px;
-    color: #F9F0DA;
+  content: "搜索";
+  font-size: 13px;
+  color: #F9F0DA;
 }
 
-  
+table {
+  font-family: '微软雅黑', '宋体', '黑体';
+}
+ 
+td {
+  background-color: rgb(249,252,255);
+  height: 24px;
+  width: 535px;
+}
+
+td:hover {
+  background-color: rgb(168,213,252);
+  cursor: default;
+}
+
+.table-c table{
+  border-right:1px solid #c5464a;
+  border-bottom:1px solid #c5464a;
+  border-radius:5px;
+} 
+.table-c table td{
+  border-left:1px solid #c5464a;
+  border-top:1px solid #c5464a;
+  background-color: #B5B5D3;
+  height: 24px;
+  width: 535px;
+}
+.table-c table td:hover {
+  background-color: rgb(168,213,252);
+  cursor: default;
+}
+
+.header {
+  background: #F4F4F7;
+  z-index: 998;
+  width: 1333px;
+  height: 50px;
+  position: fixed;
+  left: 10px;
+  /*opacity: 0.5;*/
+  border-bottom: 1px solid #C6C6C7;
+}
+.header img {
+  position: fixed;
+  left: 200px;
+  top: 6px;
+  width: 76px;
+  height: 38px;
+}
+.header button {
+  background: #F4F4F7;
+  border-radius: 2px;
+  position: fixed;
+  cursor: pointer;
+}
+
+.Index-c button {
+  left: 29%;
+  top: 11px;
+}
+.Ielts-c button {
+  left: 37%;
+  top: 11px;
+}
+.Cet4-c button {
+  /*left: 637px;*/
+  left: 47%;
+  top: 11px;
+}
+.Cet6-c button {
+  left: 57%;
+  top: 11px;
+}
+#Index:before {
+  content: "首页";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Ielts:before {
+  content: "雅思单词";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Cet4:before {
+  content: "四级单词";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Cet6:before {
+  content: "六级单词";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Index:hover::before {
+  color: #C90F1D;
+}
+#Ielts:hover::before {
+  color: #C90F1D;
+}
+#Cet4:hover::before {
+  color: #C90F1D;
+}
+#Cet6:hover::before {
+  color: #C90F1D;
+}
+.Login-c button {
+  right: 23%;
+  top: 13px;
+  width: 55px;
+  height: 25px;
+  border: 1px solid #C6C6C7;
+}
+.Register-c button {
+  right: 18%;
+  top: 13px;
+  width: 55px;
+  height: 25px;
+  border: 1px solid #C6C6C7;
+}
+#Login:before {
+  content: "登录";
+  font-size: 15px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Register:before {
+  content: "注册";
+  font-size: 15px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Login:hover {
+  border: 1px solid #C90F1D;
+}
+#Register:hover {
+  border: 1px solid #C90F1D;
+}
+#Login:hover::before {
+  color: #C90F1D;
+}
+#Register:hover::before {
+  color: #C90F1D;
+}
