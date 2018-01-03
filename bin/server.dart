@@ -7,18 +7,10 @@ import 'package:sqljocky5/utils.dart';
 import 'dart:async';
 import 'dart:convert';
 
-<<<<<<< HEAD
 
 @app.Route("/data/")
 helloWorld() {
   return getDataFromDB();
-=======
-main() async {
-  
-  querySelector('#search_word').onClick.listen(makePostRequest);
-
-  wordList = querySelector('#wordList');
->>>>>>> 928fcd12a7f4d15e3937e81c4845d1d857b0a1c7
 }
 
 @app.Route("/data/add", methods: const [app.POST])
@@ -76,7 +68,6 @@ Future<String> getDataFromDB() async {
   // response =JSON.encode(["1", "2", "bar"]);
 }
 
-<<<<<<< HEAD
 @app.Route("/register/")
 register() => "you are now a member";
 main() {
@@ -91,21 +82,3 @@ main() {
   app.start(port: 90);
   print("fefef");
 }
-=======
-  toDoInput=querySelector('#search');
-  String element=toDoInput.value;
-  var url = 'http://localhost:90/data/addword';
-  HttpRequest
-      .request(url, method: 'POST', sendData:element )
-      .then((HttpRequest resp) {
-    // Do something with the response.
-    querySelector('#response').text = resp.responseText;
-  });
-    try {
-    processSearchString(await HttpRequest.getString(url));
-  } catch (e) {
-    print('Couldn\'t open $url');
-    handleError(e);
-  }
-}
->>>>>>> 928fcd12a7f4d15e3937e81c4845d1d857b0a1c7

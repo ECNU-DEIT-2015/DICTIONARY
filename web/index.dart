@@ -10,6 +10,9 @@ import 'dart:html';
 
 import 'package:http/browser_client.dart';
 InputElement toDoInput;
+UListElement toDoList;
+ButtonElement deleteAll;
+ButtonElement addnewword;
 
 main() async {
   
@@ -17,8 +20,22 @@ main() async {
   querySelector('#search_word').onClick.listen(makePostRequest);
 
   wordList = querySelector('#wordList');
+  toDoList = querySelector('#sample_list_id');  
+ toDoList.onChange.listen(addToDoItem);
+ addnewword= querySelector('#add-newword'); 
+ addnewword.onClick.listen(addToDoItem);
+ deleteAll= querySelector('#delete-all'); 
+ deleteAll.onClick.listen(deleteAllElements);
 }
 
+void addToDoItem(Event e){
+ var nextToDo = new LIElement();
+nextToDo.text= querySelector('#response').text;
+toDoList.children.add(nextToDo); 
+}
+void deleteAllElements(Event e) {
+  toDoList.children.clear();
+}
 var wordList;
 
 void handleError(Object error) {
