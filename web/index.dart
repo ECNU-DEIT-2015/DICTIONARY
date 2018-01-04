@@ -11,6 +11,7 @@ import 'dart:html';
 import 'package:http/browser_client.dart';
 InputElement toDoInput;
 
+ButtonElement a,b;
 var firstpage=document.getElementById("firstpage");
 var cet4page=document.getElementById("wordspage");
   
@@ -20,8 +21,10 @@ main() async {
   querySelector('#search_word').onClick.listen(makePostRequest);
   wordList = querySelector('#wordList');
 
-  querySelector('#Index').onClick.listen(ChangetoFirstpage);
-  querySelector('#Cet4').onClick.listen(ChangetoCet4page);
+  a=querySelector('#Index');
+  a.onClick.listen(ChangetoFirstpage);
+  b=querySelector('#Cet4');
+  b.onClick.listen(ChangetoCet4page);
 }
 
 var wordList;
@@ -82,10 +85,12 @@ Future makePostRequest(Event e) async {
 
 
 void ChangetoFirstpage(MouseEvent e) {
-  cet4page.style.display='none';
-  firstpage.style.display='block';
+  //cet4page.style.display='none';
+  //firstpage.style.display='none';
+  document.getElementById("firstpage").style.display="";
+  document.getElementById("wordspage").style.display="";
 }
 void ChangetoCet4page(MouseEvent e) {
-  cet4page.style.display='block';
+  cet4page.style.display="none";
   firstpage.style.display='none';
 }
