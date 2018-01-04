@@ -11,12 +11,17 @@ import 'dart:html';
 import 'package:http/browser_client.dart';
 InputElement toDoInput;
 
+var firstpage=document.getElementById("firstpage");
+var cet4page=document.getElementById("wordspage");
+  
+
 main() async {
   querySelector('#getData').onClick.listen(makeRequest);
-
   querySelector('#search_word').onClick.listen(makePostRequest);
-
   wordList = querySelector('#wordList');
+
+  querySelector('#Index').onClick.listen(ChangetoFirstpage);
+  querySelector('#Cet4').onClick.listen(ChangetoCet4page);
 }
 
 var wordList;
@@ -73,4 +78,14 @@ Future makePostRequest(Event e) async {
     // Do something with the response.
     querySelector('#response').text = resp.responseText;
   });
+}
+
+
+void ChangetoFirstpage(MouseEvent e) {
+  cet4page.style.display='none';
+  firstpage.style.display='block';
+}
+void ChangetoCet4page(MouseEvent e) {
+  cet4page.style.display='block';
+  firstpage.style.display='none';
 }
