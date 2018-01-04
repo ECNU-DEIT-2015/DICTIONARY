@@ -18,7 +18,7 @@ main() async {
   
 
   querySelector('#search_word').onClick.listen(makePostRequest);
-
+  querySelector('#search_word').onClick.listen(makeRequest);
   wordList = querySelector('#wordList');
   toDoList = querySelector('#sample_list_id');  
  toDoList.onChange.listen(addToDoItem);
@@ -60,24 +60,6 @@ void processString(String jsonString) {
   }
 }
 
-Future makeSearchRequest(Event e) async {
-  var path = 'http://localhost:90/data/';
-  try {
-    processSearchString(await HttpRequest.getString(path));
-  } catch (e) {
-    print('Couldn\'t open $path');
-    handleError(e);
-  }
-}
-
-void processSearchString(String jsonString) {
-  List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
-  //List<String> a=JSON.getData()
-  for (int i = 0; i < portmanteaux.length; i++) {
-    wordList.children.add(new LIElement()..text = portmanteaux[i]);
-  }
-}
-
 
 Future makePostRequest(Event e) async {
   
@@ -90,10 +72,4 @@ Future makePostRequest(Event e) async {
     // Do something with the response.
     querySelector('#response').text = resp.responseText;
   });
-     try {
-    processSearchString(await HttpRequest.getString(url));
-  } catch (e) {
-    print('Couldn\'t open $url');
-    handleError(e);
-  }
 }

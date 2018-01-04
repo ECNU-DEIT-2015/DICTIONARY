@@ -6,22 +6,27 @@ import 'package:sqljocky5/sqljocky.dart';
 import 'package:sqljocky5/utils.dart';
 import 'dart:async';
 import 'dart:convert';
-
+String data;
 
 @app.Route("/data/")
 helloWorld() {
   return getDataFromDB();
 }
 
+@app.Route("/day1/")
+helloIelts() {
+  return getIeltsFromDB();
+}
+
 @app.Route("/data/add", methods: const [app.POST])
 addUser(@app.Body(app.TEXT) String userData) {
-  String data = userData;
+   data = userData;
   return data;
 }
 
 @app.Route("/data/addword", methods: const [app.POST])
 addword(@app.Body(app.TEXT) String userData) {
-  String data = userData;
+   data = userData;
   return getWordFromDB(data);
 }
 
@@ -38,7 +43,7 @@ Future<String> getWordFromDB(String data) async {
   String response;
   await results.forEach((row) { 
 
-     response =JSON.encode(["word: ${row[0]}","means: ${row[1]}"]);
+     response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
   }); 
   return response;
 }
@@ -51,20 +56,43 @@ Future<String> getDataFromDB() async {
       password: 'deit@2015!',
       db: 'project_2015_1',
       max: 5);
-  var results = await pool.query('select words.word, means.means from words,means where word="control" and words.ID=means.wordID');
+  var results = await pool.query("select words.word, means.means from words,means where word='" + data + "' and words.ID=means.wordID ");
   //todo get data from db.
   String response;
-  String means;
+
 
   await results.forEach((row) { 
 
-   //  response =JSON.encode(["exchange: ${row[0]}","times: ${row[1]}"]);
+     response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
   
-      means=JSON.encode("${row[1]}");
-      means=means.replaceAll("u", "%u");
-      response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
+
+    //  response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
   }); 
-  return means;
+  return response;
+  // response =JSON.encode(["1", "2", "bar"]);
+}
+
+Future<String> getIeltsFromDB() async {
+  var pool = new ConnectionPool(
+      host: 'www.muedu.org',
+      port: 3306,
+      user: 'deit-2015',
+      password: 'deit@2015!',
+      db: 'project_2015_1',
+      max: 5);
+  var results = await pool.query("select words.word, means.means from words,means where word='" + data + "' and words.ID=means.wordID ");
+  //todo get data from db.
+  String response;
+
+
+  await results.forEach((row) { 
+
+     response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
+  
+
+    //  response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
+  }); 
+  return response;
   // response =JSON.encode(["1", "2", "bar"]);
 }
 
