@@ -42,7 +42,6 @@ Future<String> getWordFromDB(String data) async {
   //todo get data from db.
   String response;
   await results.forEach((row) { 
-
      response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
   }); 
   return response;
@@ -57,19 +56,13 @@ Future<String> getDataFromDB() async {
       db: 'project_2015_1',
       max: 5);
   var results = await pool.query("select words.word, means.means from words,means where word='" + data + "' and words.ID=means.wordID ");
-  //todo get data from db.
   String response;
-
-
   await results.forEach((row) { 
 
      response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
-  
-
     //  response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
   }); 
   return response;
-  // response =JSON.encode(["1", "2", "bar"]);
 }
 
 Future<String> getIeltsFromDB() async {
@@ -80,20 +73,17 @@ Future<String> getIeltsFromDB() async {
       password: 'deit@2015!',
       db: 'project_2015_1',
       max: 5);
-  var results = await pool.query("select words.word, means.means from words,means where word='" + data + "' and words.ID=means.wordID ");
-  //todo get data from db.
-  String response;
-
-
-  await results.forEach((row) { 
-
+for(int i=1;i<=10;i++)
+ {
+    String j=i.toString();
+    var results = await pool.query("select Ielts.word, Ielts.means from Ielts where id='  "+ j +"  ' ");
+     String response;
+     await results.forEach((row) { 
      response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
-  
-
     //  response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
   }); 
   return response;
-  // response =JSON.encode(["1", "2", "bar"]);
+ }
 }
 
 @app.Route("/register/")
