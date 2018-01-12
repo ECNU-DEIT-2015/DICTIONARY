@@ -23,6 +23,9 @@ ButtonElement A;
 var wordList;
 var firstpage=document.getElementById("firstpage");
 String responseText;
+var newword=new Map();
+int countNewWord=0;
+
 
 main() async {
   
@@ -60,14 +63,38 @@ void CHANGE(Event e){
 
 }
 void addToDoItem(Event e){ 
-var nextToDo = new LIElement();
-nextToDo.text=  responseText;
-toDoList.children.add(nextToDo); 
-nextToDo.onClick.listen((e)=>nextToDo.remove());
+  int i;
+  var nextToDo = new LIElement();
+  if(countNewWord==0)
+  {
+  newword[countNewWord++]=responseText;
+  nextToDo.text=  responseText;
+  toDoList.children.add(nextToDo); 
+    }
+  else 
+  {
+    for( i=0;i<countNewWord;i++)
+    {
+      if(newword[i]==responseText){
+      querySelector('#attention').text="您已添加该词";
+      break;
+      }
+    }
+    if (i==countNewWord)
+    {
+       newword[countNewWord++]=responseText;      
+       nextToDo.text=  responseText;
+       toDoList.children.add(nextToDo); 
+       
+    }
+  }
+  nextToDo.onClick.listen((e)=>nextToDo.remove());
+ // nextToDo.onClick
 }
 
-void removeItem(Event e){
-  // toDoList.children.remove(nextToDo);
+void deletedata(Event e)
+{
+
 }
 
 void deleteAllElements(Event e) {
