@@ -13,13 +13,16 @@ InputElement toDoInput;
 UListElement toDoList;
 ButtonElement deleteAll;
 ButtonElement addnewword;
-UListElement wordlist1;
+UListElement firstlist;
+UListElement secondlist;
+UListElement thirdlist;
+UListElement fourthlist;
 UListElement l1;
 ButtonElement A;
 
 var wordList;
 var firstpage=document.getElementById("firstpage");
-
+String responseText;
 
 main() async {
   
@@ -27,9 +30,13 @@ main() async {
   querySelector('#search_word').onClick.listen(makePostRequest);
   querySelector('#search_word').onClick.listen(makeRequest);
   wordList = querySelector('#wordList');
-  wordlist1 = querySelector('#lista');
+  firstlist = querySelector('#firstlist');
+  secondlist = querySelector('#secondlist');
+  thirdlist = querySelector('#thirdlist');
+  fourthlist = querySelector('#fourthlist');
   toDoList = querySelector('#sample_list_id');  
  toDoList.onChange.listen(addToDoItem);
+ // toDoList.onClick.listen(removeItem);
  addnewword= querySelector('#add-newword'); 
  addnewword.onClick.listen(addToDoItem);
  deleteAll= querySelector('#delete-all'); 
@@ -40,8 +47,7 @@ main() async {
 
 
   var path = 'http://localhost:90/day1/';
-
-    processListString(await HttpRequest.getString(path));
+   listString(await HttpRequest.getString(path));
   
 }
 
@@ -53,11 +59,17 @@ void CHANGE(Event e){
   firstpage.style.display='none';
 
 }
-void addToDoItem(Event e){
- var nextToDo = new LIElement();
-nextToDo.text= querySelector('#response').text;
+void addToDoItem(Event e){ 
+var nextToDo = new LIElement();
+nextToDo.text=  responseText;
 toDoList.children.add(nextToDo); 
+nextToDo.onClick.listen((e)=>nextToDo.remove());
 }
+
+void removeItem(Event e){
+  // toDoList.children.remove(nextToDo);
+}
+
 void deleteAllElements(Event e) {
   toDoList.children.clear();
 }
@@ -80,17 +92,26 @@ Future makeRequest(Event e) async {
 void processString(String jsonString) {
   List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
   //List<String> a=JSON.getData()
+  wordList.children.clear();
   for (int i = 0; i < portmanteaux.length; i++) {
     wordList.children.add(new LIElement()..text = portmanteaux[i]);
   }
 }
 
-void processListString(String jsonString) {
+void listString(String jsonString) {
    List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
- // var word = new LIElement();
-    //  word.text=portmanteaux;
-   // wordlist1.children.add(word);
-    wordlist1.children.add(new LIElement()..text = portmanteaux.toString());
+     for (int i = 0; i < 10; i++) {
+    firstlist.children.add(new LIElement()..text = portmanteaux[i]);
+  }
+       for (int i = 10; i < 20; i++) {
+   secondlist.children.add(new LIElement()..text = portmanteaux[i]);
+  }
+    for (int i = 20; i < 30; i++) {
+    thirdlist.children.add(new LIElement()..text = portmanteaux[i]);
+  }
+    for (int i = 30; i < portmanteaux.length; i++) {
+    fourthlist.children.add(new LIElement()..text = portmanteaux[i]);
+  }
   
 }
 
@@ -104,7 +125,7 @@ Future makePostRequest(Event e) async {
       .request(url, method: 'POST', sendData:element )
       .then((HttpRequest resp) {
     // Do something with the response.
-    querySelector('#response').text = resp.responseText;
+     responseText = resp.responseText;
   });
 }
 

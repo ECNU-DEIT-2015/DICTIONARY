@@ -6,6 +6,7 @@ import 'package:sqljocky5/sqljocky.dart';
 import 'package:sqljocky5/utils.dart';
 import 'dart:async';
 import 'dart:convert';
+//import 'dart:html';
 String data;
 
 @app.Route("/data/")
@@ -42,7 +43,7 @@ Future<String> getWordFromDB(String data) async {
   //todo get data from db.
   String response;
   await results.forEach((row) { 
-     response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
+     response =''' ${row[0]}   ${row[1]}''';
   }); 
   return response;
 }
@@ -73,17 +74,31 @@ Future<String> getIeltsFromDB() async {
       password: 'deit@2015!',
       db: 'project_2015_1',
       max: 5);
-for(int i=1;i<=10;i++)
- {
-    String j=i.toString();
-    var results = await pool.query("select Ielts.word, Ielts.means from Ielts where id='  "+ j +"  ' ");
-     String response;
+
+    String response;
+    var WLIST = new Map();
+    
+    int i=1;
+    //var results = await pool.query("select Ielts.word, Ielts.means from Ielts where id='  "+ j +"  ' ");
+    var results = await pool.query("select Ielts.word, Ielts.means from Ielts where id<41");
+       
      await results.forEach((row) { 
-     response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
-    //  response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
-  }); 
-  return response;
- }
+ 
+    // response = JSON.encode([response,"${row[0]} , ${row[1]}"]);
+    response='''${row[0]} , ${row[1]}''';
+    WLIST[i]=response;
+    i++;
+    
+    // response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
+    
+    
+   }); 
+    response = JSON.encode([WLIST[1],WLIST[2],WLIST[3],WLIST[4],WLIST[5],WLIST[6],WLIST[7],WLIST[8],WLIST[9],WLIST[10],
+                           WLIST[11],WLIST[12],WLIST[13],WLIST[14],WLIST[15],WLIST[16],WLIST[17],WLIST[18],WLIST[19],WLIST[20],
+                           WLIST[21],WLIST[22],WLIST[23],WLIST[24],WLIST[25],WLIST[26],WLIST[27],WLIST[28],WLIST[29],WLIST[30],
+                           WLIST[31],WLIST[32],WLIST[33],WLIST[34],WLIST[35],WLIST[36],WLIST[37],WLIST[38],WLIST[39],WLIST[40]]);
+    print(response); 
+    return response;
 }
 
 @app.Route("/register/")
