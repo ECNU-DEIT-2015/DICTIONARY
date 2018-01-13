@@ -20,9 +20,16 @@ UListElement thirdlist;
 UListElement fourthlist;
 UListElement l1;
 ButtonElement A;
+ButtonElement firstbutton;
+ButtonElement secondbutton;
+ButtonElement thirdbutton;
+ButtonElement fourthbutton;
+
 
 var wordList;
 var firstpage=document.getElementById("firstpage");
+var firstbutton1=document.getElementById("test");
+var f2=document.getElementById("test2");
 String responseText;
 var newword=new Map();
 int countNewWord=0;
@@ -53,7 +60,14 @@ main() async {
  A=querySelector('#Index');
  A.onClick.listen(CHANGE);
  querySelector('#Index').onClick.listen(CHANGE);
-
+ firstbutton = querySelector('#firstbutton');
+ firstbutton.onClick.listen(firstclickedbutton);
+ secondbutton = querySelector('#secondbutton');
+ secondbutton.onClick.listen(secondclickedbutton);
+ thirdbutton = querySelector('#thirdbutton');
+ thirdbutton.onClick.listen(thirdclickedbutton);
+ fourthbutton = querySelector('#fourthbutton');
+fourthbutton.onClick.listen(fourthclickedbutton);
 
   var path = 'http://localhost:90/day1/';
    listString(await HttpRequest.getString(path));
@@ -61,13 +75,13 @@ main() async {
 }
 
 
+
 void CHANGE(Event e){
  l1=querySelector('#a');
  l1.text='qqq';
- 
-  firstpage.style.display='none';
-
+ firstbutton1.style.display='none';
 }
+
 void addToDoItem(Event e){ 
   int i;
   var nextToDo = new LIElement();
@@ -106,18 +120,32 @@ void deletedata(Event e)
     if(b==newword[i])
     {
       for(int j=i;j<countNewWord;j++)newword[j]=newword[j+1];
-   // newword[i]="1";
       break;
     }
   }
- // newword[0]="1";
-// querySelector('#attention').text="您已删除";
 }
 
 void deleteAllElements(Event e) {
   toDoList.children.clear();
 }
 
+void firstclickedbutton(Event e) {
+  firstbutton1.style.display='none';
+  f2.style.display='block';
+}
+
+void secondclickedbutton(Event e) {
+  firstbutton1.style.display='none';
+  
+}
+
+void thirdclickedbutton(Event e) {
+  toDoList.children.clear();
+}
+
+void fourthclickedbutton(Event e) {
+  toDoList.children.clear();
+}
 
 void handleError(Object error) {
   wordList.children.add(new LIElement()..text = 'Request failed.');
