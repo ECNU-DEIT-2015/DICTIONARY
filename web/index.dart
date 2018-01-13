@@ -11,6 +11,7 @@ import 'dart:html';
 import 'package:http/browser_client.dart';
 InputElement toDoInput;
 UListElement toDoList;
+UListElement DoList;
 ButtonElement deleteAll;
 ButtonElement addnewword;
 UListElement firstlist;
@@ -25,7 +26,7 @@ var firstpage=document.getElementById("firstpage");
 String responseText;
 var newword=new Map();
 int countNewWord=0;
-
+String b;
 
 main() async {
   
@@ -84,17 +85,28 @@ void addToDoItem(Event e){
     {
        newword[countNewWord++]=responseText;      
        nextToDo.text=  responseText;
-       toDoList.children.add(nextToDo); 
-       
+       toDoList.children.add(nextToDo);        
     }
   }
   nextToDo.onClick.listen((e)=>nextToDo.remove());
- // nextToDo.onClick
+  nextToDo.onClick.listen((e)=>b=nextToDo.text);
+  nextToDo.onClick.listen(deletedata);
+ 
 }
 
 void deletedata(Event e)
 {
-
+  for(int i=0;i<countNewWord;i++)
+  {
+    if(b==newword[i])
+    {
+      for(int j=i;j<countNewWord;j++)newword[j]=newword[j+1];
+   // newword[i]="1";
+      break;
+    }
+  }
+ // newword[0]="1";
+// querySelector('#attention').text="您已删除";
 }
 
 void deleteAllElements(Event e) {
