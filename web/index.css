@@ -133,7 +133,7 @@ div.search {padding: 30px 0;}
 }
  
 .bar6 td {
-  background-color: #79848F;
+  background-color: #fefefe;
   height: 24px;
   width: 525px;
   /*position: absolute;*/
@@ -231,6 +231,15 @@ div.search {padding: 30px 0;}
 #Register:hover {border: 1px solid #C90F1D;}
 #Login:hover::before {color: #C90F1D;}
 #Register:hover::before {color: #C90F1D;}
+.user-name p {
+  position: fixed;
+  right: 18%;
+  font-size: 15px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+  cursor: pointer;
+}
+.user-name p:hover {color: #c5464a;}
 
 
 /* 单词页面 */

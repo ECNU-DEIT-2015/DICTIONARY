@@ -28,6 +28,11 @@ var newword=new Map();
 int countNewWord=0;
 String b;
 
+//ButtonElement a,b;
+//var firstpage=document.getElementById("firstpage");
+var cet4page=document.getElementById("wordspage");
+  
+
 main() async {
   
 
