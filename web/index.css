@@ -331,3 +331,56 @@ div.search {padding: 30px 0;}
 .day8-c button {position: absolute;left: 72%;}
 .day9-c button {position: absolute;left: 82%;}
 .day10-c button {position: absolute;left: 92%;}
+
+/*meanspage*/
+.header2 {
+  position: fixed;
+  background: #AFAFD3;
+  z-index: 997;
+  width: 1333px;
+  height: 50px;
+  left: 10px;
+  top: 50px;
+  border-bottom: 1px solid #C6C6C7;
+}
+.means {
+  background: #fefefe;
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  left: 34%;
+  top: 33%;
+  padding-left: 4.5%;
+}
+.means ul {
+  list-style:none;
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+.means button {
+  position: absolute;
+  top: 8%;
+  left: 70%;
+  width: 22%;
+  height: 10%;
+  background: #fefefe;
+  border: 1px solid #C6C6C7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.means button::before {
+  content: "添加到生词本";
+  font-size: 12px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+.means button:hover {border: 1px solid #C90F1D;}
+.means button:hover::before {color: #C90F1D;}
+
+ul {
+  list-style-type:none;
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
