@@ -28,16 +28,18 @@ ButtonElement fourthbutton;
 var meanList;
 var searchedword;
 var firstpage=document.getElementById("firstpage");
-var firstbutton1=document.getElementById("test");
-var f2=document.getElementById("test2");
+//var cet4page=document.getElementById("cet4wordspage");
+//var cet6page=document.getElementById("cet6page");
+var ieltspage=document.getElementById("wordspage");
+var firstlist_button=document.getElementById("firstlist_button");
+var firstlist_label=document.getElementById("firstlist_label");
+var mean_div=document.getElementById("mean_div");
 String responseText;
 var newword=new Map();
 int countNewWord=0;
 String b;
 
-//ButtonElement a,b;
-//var firstpage=document.getElementById("firstpage");
-var cet4page=document.getElementById("wordspage");
+
   
 
 main() async {
@@ -51,16 +53,12 @@ main() async {
   secondlist = querySelector('#secondlist');
   thirdlist = querySelector('#thirdlist');
   fourthlist = querySelector('#fourthlist');
-  toDoList = querySelector('#sample_list_id');  
- toDoList.onChange.listen(addToDoItem);
- // toDoList.onClick.listen(removeItem);
- addnewword= querySelector('#add-newword'); 
- addnewword.onClick.listen(addToDoItem);
- deleteAll= querySelector('#delete-all'); 
- deleteAll.onClick.listen(deleteAllElements);
- firstpage_button=querySelector('#Index');
- firstpage_button.onClick.listen(CHANGE);
- querySelector('#Index').onClick.listen(CHANGE);
+ querySelector('#add-newword').onClick.listen(addToDoItem); 
+ querySelector('#delete-all').onClick.listen(deleteAllElements);
+ querySelector('#Index').onClick.listen(firstpageduang);
+ querySelector('#Ielts').onClick.listen(ieltspageduang);
+ querySelector('#Cet4').onClick.listen(cet6pageduang);
+ querySelector('#Cet6').onClick.listen(cet4pageduang);
  firstbutton = querySelector('#firstbutton');
  firstbutton.onClick.listen(firstclickedbutton);
  secondbutton = querySelector('#secondbutton');
@@ -72,12 +70,37 @@ fourthbutton.onClick.listen(fourthclickedbutton);
 
   var path = 'http://localhost:90/day1/';
    listString(await HttpRequest.getString(path));
+
+    ieltspage.style.display='none';
+    firstpage.style.display='block';
   
 }
 
 
 
-void CHANGE(Event e){
+void firstpageduang(Event e){
+ ieltspage.style.display='none';
+ firstpage.style.display='block';
+ //cet6page.style.display='none';
+ //cet4page.style.display='none';
+}
+
+void ieltspageduang(Event e){
+ firstpage.style.display='none';
+ ieltspage.style.display='block';
+ //cet6page.style.display='none';
+//cet4page.style.display='none';
+}
+
+void cet6pageduang(Event e){
+ ieltspage.style.display='none';
+ firstpage.style.display='none';
+ //cet4page.style.display='none';
+}
+
+void cet4pageduang(Event e){
+ ieltspage.style.display='none';
+// cet6page.style.display='none';
  firstpage.style.display='none';
 }
 
@@ -88,7 +111,7 @@ void addToDoItem(Event e){
   {
   newword[countNewWord++]=responseText;
   nextToDo.text=  responseText;
-  toDoList.children.add(nextToDo); 
+  querySelector('#sample_list_id').children.add(nextToDo); 
     }
   else 
   {
@@ -103,7 +126,7 @@ void addToDoItem(Event e){
     {
        newword[countNewWord++]=responseText;      
        nextToDo.text=  responseText;
-       toDoList.children.add(nextToDo);        
+       querySelector('#sample_list_id').children.add(nextToDo);        
     }
   }
   nextToDo.onClick.listen((e)=>nextToDo.remove());
@@ -125,16 +148,16 @@ void deletedata(Event e)
 }
 
 void deleteAllElements(Event e) {
-  toDoList.children.clear();
+  querySelector('#sample_list_id').children.clear();
 }
 
 void firstclickedbutton(Event e) {
-  firstbutton1.style.display='none';
-  f2.style.display='block';
+  firstlist_button.style.display='none';
+  firstlist_label.style.display='block';
 }
 
 void secondclickedbutton(Event e) {
-  firstbutton1.style.display='none';
+  firstlist_button.style.display='none';
   
 }
 
@@ -158,6 +181,7 @@ Future makeRequest(Event e) async {
     print('Couldn\'t open $path');
     handleError(e);
   }
+  mean_div.style.display='block';
 }
 
 void processString(String jsonString) {
