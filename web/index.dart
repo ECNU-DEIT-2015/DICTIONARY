@@ -18,15 +18,15 @@ UListElement firstlist;
 UListElement secondlist;
 UListElement thirdlist;
 UListElement fourthlist;
-UListElement l1;
-ButtonElement A;
+ButtonElement firstpage_button;
 ButtonElement firstbutton;
 ButtonElement secondbutton;
 ButtonElement thirdbutton;
 ButtonElement fourthbutton;
 
 
-var wordList;
+var meanList;
+var searchedword;
 var firstpage=document.getElementById("firstpage");
 var firstbutton1=document.getElementById("test");
 var f2=document.getElementById("test2");
@@ -45,7 +45,8 @@ main() async {
 
   querySelector('#search_word').onClick.listen(makePostRequest);
   querySelector('#search_word').onClick.listen(makeRequest);
-  wordList = querySelector('#wordList');
+  meanList = querySelector('#meanList');
+  searchedword = querySelector('#searchedword');
   firstlist = querySelector('#firstlist');
   secondlist = querySelector('#secondlist');
   thirdlist = querySelector('#thirdlist');
@@ -57,8 +58,8 @@ main() async {
  addnewword.onClick.listen(addToDoItem);
  deleteAll= querySelector('#delete-all'); 
  deleteAll.onClick.listen(deleteAllElements);
- A=querySelector('#Index');
- A.onClick.listen(CHANGE);
+ firstpage_button=querySelector('#Index');
+ firstpage_button.onClick.listen(CHANGE);
  querySelector('#Index').onClick.listen(CHANGE);
  firstbutton = querySelector('#firstbutton');
  firstbutton.onClick.listen(firstclickedbutton);
@@ -77,9 +78,7 @@ fourthbutton.onClick.listen(fourthclickedbutton);
 
 
 void CHANGE(Event e){
- l1=querySelector('#a');
- l1.text='qqq';
- firstbutton1.style.display='none';
+ firstpage.style.display='none';
 }
 
 void addToDoItem(Event e){ 
@@ -148,7 +147,7 @@ void fourthclickedbutton(Event e) {
 }
 
 void handleError(Object error) {
-  wordList.children.add(new LIElement()..text = 'Request failed.');
+  meanList.children.add(new LIElement()..text = 'Request failed.');
 }
 
 Future makeRequest(Event e) async {
@@ -164,9 +163,11 @@ Future makeRequest(Event e) async {
 void processString(String jsonString) {
   List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
   //List<String> a=JSON.getData()
-  wordList.children.clear();
-  for (int i = 0; i < portmanteaux.length; i++) {
-    wordList.children.add(new LIElement()..text = portmanteaux[i]);
+  meanList.children.clear();
+  searchedword.children.clear();
+  searchedword.children.add(new LIElement()..text = portmanteaux[0]);
+  for (int i = 1; i < portmanteaux.length; i++) {
+    meanList.children.add(new LIElement()..text = portmanteaux[i]);
   }
 }
 
