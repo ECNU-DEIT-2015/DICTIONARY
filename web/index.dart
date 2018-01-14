@@ -47,26 +47,17 @@ main() async {
 
   querySelector('#search_word').onClick.listen(makePostRequest);
   querySelector('#search_word').onClick.listen(makeRequest);
-  meanList = querySelector('#meanList');
-  searchedword = querySelector('#searchedword');
-  firstlist = querySelector('#firstlist');
-  secondlist = querySelector('#secondlist');
-  thirdlist = querySelector('#thirdlist');
-  fourthlist = querySelector('#fourthlist');
- querySelector('#add-newword').onClick.listen(addToDoItem); 
- querySelector('#delete-all').onClick.listen(deleteAllElements);
- querySelector('#Index').onClick.listen(firstpageduang);
- querySelector('#Ielts').onClick.listen(ieltspageduang);
- querySelector('#Cet4').onClick.listen(cet6pageduang);
- querySelector('#Cet6').onClick.listen(cet4pageduang);
- firstbutton = querySelector('#firstbutton');
- firstbutton.onClick.listen(firstclickedbutton);
- secondbutton = querySelector('#secondbutton');
- secondbutton.onClick.listen(secondclickedbutton);
- thirdbutton = querySelector('#thirdbutton');
- thirdbutton.onClick.listen(thirdclickedbutton);
- fourthbutton = querySelector('#fourthbutton');
-fourthbutton.onClick.listen(fourthclickedbutton);
+  querySelector('#add-newword').onClick.listen(addToDoItem); 
+  querySelector('#delete-all').onClick.listen(deleteAllElements);
+  querySelector('#Index').onClick.listen(firstpageduang);
+  querySelector('#Ielts').onClick.listen(ieltspageduang);
+  querySelector('#Cet4').onClick.listen(cet6pageduang);
+  querySelector('#Cet6').onClick.listen(cet4pageduang);
+  querySelector('#firstbutton').onClick.listen(firstclickedbutton);
+  querySelector('#secondbutton').onClick.listen(secondclickedbutton);
+  querySelector('#thirdbutton').onClick.listen(thirdclickedbutton);
+  querySelector('#fourthbutton').onClick.listen(fourthclickedbutton);
+
 
   var path = 'http://localhost:90/day1/';
    listString(await HttpRequest.getString(path));
@@ -170,7 +161,7 @@ void fourthclickedbutton(Event e) {
 }
 
 void handleError(Object error) {
-  meanList.children.add(new LIElement()..text = 'Request failed.');
+  querySelector('#meanList').children.add(new LIElement()..text = 'Request failed.');
 }
 
 Future makeRequest(Event e) async {
@@ -187,27 +178,27 @@ Future makeRequest(Event e) async {
 void processString(String jsonString) {
   List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
   //List<String> a=JSON.getData()
-  meanList.children.clear();
-  searchedword.children.clear();
-  searchedword.children.add(new LIElement()..text = portmanteaux[0]);
+  querySelector('#meanList').children.clear();
+  querySelector('#searchedword').children.clear();
+  querySelector('#searchedword').children.add(new LIElement()..text = portmanteaux[0]);
   for (int i = 1; i < portmanteaux.length; i++) {
-    meanList.children.add(new LIElement()..text = portmanteaux[i]);
+    querySelector('#meanList').children.add(new LIElement()..text = portmanteaux[i]);
   }
 }
 
 void listString(String jsonString) {
    List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
      for (int i = 0; i < 10; i++) {
-    firstlist.children.add(new LIElement()..text = portmanteaux[i]);
+    querySelector('#firstlist').children.add(new LIElement()..text = portmanteaux[i]);
   }
        for (int i = 10; i < 20; i++) {
-   secondlist.children.add(new LIElement()..text = portmanteaux[i]);
+   querySelector('#secondlist').children.add(new LIElement()..text = portmanteaux[i]);
   }
     for (int i = 20; i < 30; i++) {
-    thirdlist.children.add(new LIElement()..text = portmanteaux[i]);
+    querySelector('#thirdlist').children.add(new LIElement()..text = portmanteaux[i]);
   }
     for (int i = 30; i < portmanteaux.length; i++) {
-    fourthlist.children.add(new LIElement()..text = portmanteaux[i]);
+     querySelector('#fourthlist').children.add(new LIElement()..text = portmanteaux[i]);
   }
   
 }
