@@ -173,6 +173,7 @@ div.search {padding: 30px 0;}
 .Ielts-c button {left: 37%;top: 11px;}
 .Cet4-c button {/*left: 637px;*/left: 47%;top: 11px;}
 .Cet6-c button {left: 57%;top: 11px;}
+.NewWord-c button {left: 67%;top: 11px;}
 #Index:before {
   content: "首页";
   font-size: 16px;
@@ -197,19 +198,26 @@ div.search {padding: 30px 0;}
   color: #181616;
   font-family: "Microsoft YaHei";
 }
+#NewWord:before {
+  content: "生词本";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
 #Index:hover::before {color: #C90F1D;}
 #Ielts:hover::before {color: #C90F1D;}
 #Cet4:hover::before {color: #C90F1D;}
 #Cet6:hover::before {color: #C90F1D;}
+#NewWord:hover::before {color: #C90F1D;}
 .Login-c button {
-  right: 23%;
+  right: 15%;
   top: 13px;
   width: 55px;
   height: 25px;
   border: 1px solid #C6C6C7;
 }
 .Register-c button {
-  right: 18%;
+  right: 10%;
   top: 13px;
   width: 55px;
   height: 25px;
@@ -399,4 +407,14 @@ ul {
   font-size: 16px;
   color: #181616;
   font-family: "Microsoft YaHei";
+}
+
+.newword {
+  background: #fefefe;
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  left: 25%;
+  top: 35%;
+  padding-left: 4.5%;
 }

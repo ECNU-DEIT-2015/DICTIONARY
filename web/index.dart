@@ -25,8 +25,6 @@ ButtonElement thirdbutton;
 ButtonElement fourthbutton;
 
 
-var meanList;
-var searchedword;
 var firstpage=document.getElementById("firstpage");
 //var cet4page=document.getElementById("cet4wordspage");
 //var cet6page=document.getElementById("cet6page");
@@ -34,6 +32,7 @@ var ieltspage=document.getElementById("wordspage");
 var firstlist_button=document.getElementById("firstlist_button");
 var firstlist_label=document.getElementById("firstlist_label");
 var mean_div=document.getElementById("mean_div");
+var newwordpage=document.getElementById("newwordpage");
 String responseText;
 var newword=new Map();
 int countNewWord=0;
@@ -53,6 +52,7 @@ main() async {
   querySelector('#Ielts').onClick.listen(ieltspageduang);
   querySelector('#Cet4').onClick.listen(cet6pageduang);
   querySelector('#Cet6').onClick.listen(cet4pageduang);
+  querySelector('#NewWord').onClick.listen(newwordpageduang);
   querySelector('#firstbutton').onClick.listen(firstclickedbutton);
   querySelector('#secondbutton').onClick.listen(secondclickedbutton);
   querySelector('#thirdbutton').onClick.listen(thirdclickedbutton);
@@ -62,7 +62,7 @@ main() async {
   var path = 'http://localhost:90/day1/';
    listString(await HttpRequest.getString(path));
 
-    ieltspage.style.display='none';
+
     firstpage.style.display='block';
   
 }
@@ -74,6 +74,7 @@ void firstpageduang(Event e){
  firstpage.style.display='block';
  //cet6page.style.display='none';
  //cet4page.style.display='none';
+ newwordpage.style.display='none';
 }
 
 void ieltspageduang(Event e){
@@ -81,18 +82,28 @@ void ieltspageduang(Event e){
  ieltspage.style.display='block';
  //cet6page.style.display='none';
 //cet4page.style.display='none';
+newwordpage.style.display='none';
 }
 
 void cet6pageduang(Event e){
  ieltspage.style.display='none';
  firstpage.style.display='none';
  //cet4page.style.display='none';
+ newwordpage.style.display='none';
 }
 
 void cet4pageduang(Event e){
  ieltspage.style.display='none';
 // cet6page.style.display='none';
  firstpage.style.display='none';
+ newwordpage.style.display='none';
+}
+
+void newwordpageduang(Event e){
+ ieltspage.style.display='none';
+// cet6page.style.display='none';
+ firstpage.style.display='none';
+ newwordpage.style.display='block';
 }
 
 void addToDoItem(Event e){ 
