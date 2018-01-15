@@ -37,6 +37,7 @@ String responseText;
 var newword=new Map();
 int countNewWord=0;
 String b;
+String element;
 
 
   
@@ -191,8 +192,8 @@ void processString(String jsonString) {
   //List<String> a=JSON.getData()
   querySelector('#meanList').children.clear();
   querySelector('#searchedword').children.clear();
-  querySelector('#searchedword').children.add(new LIElement()..text = portmanteaux[0]);
-  for (int i = 1; i < portmanteaux.length; i++) {
+  querySelector('#searchedword').children.add(new LIElement()..text = element);
+  for (int i = 0; i < portmanteaux.length; i++) {
     querySelector('#meanList').children.add(new LIElement()..text = portmanteaux[i]);
   }
 }
@@ -218,7 +219,7 @@ void listString(String jsonString) {
 Future makePostRequest(Event e) async {
   
   toDoInput=querySelector('#search');
-  String element=toDoInput.value;
+  element=toDoInput.value;
   var url = 'http://localhost:90/data/addword';
   HttpRequest
       .request(url, method: 'POST', sendData:element )

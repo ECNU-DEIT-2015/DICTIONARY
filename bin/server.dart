@@ -39,12 +39,29 @@ Future<String> getWordFromDB(String data) async {
       password: 'deit@2015!',
       db: 'project_2015_1',
       max: 5);
-  var results = await pool.query("select words.word, means.means from words,means where word='" + data + "' and words.ID=means.wordID ");
+  var results = await pool.query("select pos.name, means.means from words,means,pos where word='" + data + "' and words.ID=means.wordID and means.posID=pos.ID");
   //todo get data from db.
-  String response;
+  String response=data;
+   var meanLIST = new Map();
+  meanLIST[0]=null;
+  meanLIST[1]=null;
+  meanLIST[2]=null;
+  meanLIST[3]=null;
+  int i=0;
   await results.forEach((row) { 
-     response =''' ${row[0]}   ${row[1]}''';
+     meanLIST[i] =''' ${row[0]}   ${row[1]}''';
+     
+     i++;
   }); 
+  for(i=0;i<meanLIST.length;i++){
+    if(meanLIST[i]!=null)
+    {
+        response=response+' '+' '+meanLIST[i];        
+    }
+    if(meanLIST[i]==null)break;
+     
+  }
+ 
   return response;
 }
 
@@ -56,13 +73,22 @@ Future<String> getDataFromDB() async {
       password: 'deit@2015!',
       db: 'project_2015_1',
       max: 5);
-  var results = await pool.query("select words.word, means.means from words,means where word='" + data + "' and words.ID=means.wordID ");
+  var results = await pool.query("select  pos.name, means.means from words,means,pos where word='" + data + "' and words.ID=means.wordID and means.posID=pos.ID");
   String response;
+  var meanLIST = new Map();
+  meanLIST[0]=null;
+  meanLIST[1]=null;
+  meanLIST[2]=null;
+  meanLIST[3]=null;
+  int i=0;
   await results.forEach((row) { 
 
-     response =JSON.encode([" ${row[0]}"," ${row[1]}"]);
+     response =''' ${row[0]}  ${row[1]}''';
+     meanLIST[i]=response;
+     i++;
     //  response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
   }); 
+  response=JSON.encode([meanLIST[0],meanLIST[1],meanLIST[2],meanLIST[3]]);
   return response;
 }
 
