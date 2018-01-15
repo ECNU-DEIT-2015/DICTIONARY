@@ -32,6 +32,7 @@ var ieltspage=document.getElementById("wordspage");
 var firstlist_button=document.getElementById("firstlist_button");
 var firstlist_label=document.getElementById("firstlist_label");
 var mean_div=document.getElementById("mean_div");
+var searchedword_div=document.getElementById("searchedword_div");
 var newwordpage=document.getElementById("newwordpage");
 String responseText;
 var newword=new Map();
@@ -47,6 +48,10 @@ main() async {
 
   querySelector('#search_word').onClick.listen(makePostRequest);
   querySelector('#search_word').onClick.listen(makeRequest);
+  querySelector('#search_word1').onClick.listen(makePostRequest1);
+  querySelector('#search1').onChange.listen((e)=>mean_div.style.display='none');
+  querySelector('#search').onChange.listen((e)=>mean_div.style.display='none');
+  querySelector('#search_word1').onClick.listen(makeRequest);
   querySelector('#add-newword').onClick.listen(addToDoItem); 
   querySelector('#delete-all').onClick.listen(deleteAllElements);
   querySelector('#Index').onClick.listen(firstpageduang);
@@ -54,6 +59,8 @@ main() async {
   querySelector('#Cet4').onClick.listen(cet6pageduang);
   querySelector('#Cet6').onClick.listen(cet4pageduang);
   querySelector('#NewWord').onClick.listen(newwordpageduang);
+  querySelector('#search_word').onClick.listen(searchedwordpageduang);
+  querySelector('#search_word1').onClick.listen(searchedwordpageduang);
   querySelector('#firstbutton').onClick.listen(firstclickedbutton);
   querySelector('#secondbutton').onClick.listen(secondclickedbutton);
   querySelector('#thirdbutton').onClick.listen(thirdclickedbutton);
@@ -76,6 +83,8 @@ void firstpageduang(Event e){
  //cet6page.style.display='none';
  //cet4page.style.display='none';
  newwordpage.style.display='none';
+ searchedword_div.style.display='none';
+ mean_div.style.display='none';
 }
 
 void ieltspageduang(Event e){
@@ -84,6 +93,8 @@ void ieltspageduang(Event e){
  //cet6page.style.display='none';
 //cet4page.style.display='none';
 newwordpage.style.display='none';
+mean_div.style.display='none';
+searchedword_div.style.display='block';
 }
 
 void cet6pageduang(Event e){
@@ -91,6 +102,8 @@ void cet6pageduang(Event e){
  firstpage.style.display='none';
  //cet4page.style.display='none';
  newwordpage.style.display='none';
+ mean_div.style.display='none';
+ searchedword_div.style.display='block';
 }
 
 void cet4pageduang(Event e){
@@ -98,6 +111,8 @@ void cet4pageduang(Event e){
 // cet6page.style.display='none';
  firstpage.style.display='none';
  newwordpage.style.display='none';
+ mean_div.style.display='none';
+ searchedword_div.style.display='block';
 }
 
 void newwordpageduang(Event e){
@@ -105,6 +120,19 @@ void newwordpageduang(Event e){
 // cet6page.style.display='none';
  firstpage.style.display='none';
  newwordpage.style.display='block';
+ mean_div.style.display='none';
+ searchedword_div.style.display='block';
+
+}
+
+void searchedwordpageduang(Event e){
+ ieltspage.style.display='none';
+// cet6page.style.display='none';
+ firstpage.style.display='none';
+ newwordpage.style.display='none';
+mean_div.style.display='block';
+searchedword_div.style.display='block';
+ 
 }
 
 void addToDoItem(Event e){ 
@@ -184,7 +212,7 @@ Future makeRequest(Event e) async {
     print('Couldn\'t open $path');
     handleError(e);
   }
-  mean_div.style.display='block';
+mean_div.style.display='block';
 }
 
 void processString(String jsonString) {
@@ -229,3 +257,15 @@ Future makePostRequest(Event e) async {
   });
 }
 
+Future makePostRequest1(Event e) async {
+  
+  toDoInput=querySelector('#search1');
+  element=toDoInput.value;
+  var url = 'http://localhost:90/data/addword';
+  HttpRequest
+      .request(url, method: 'POST', sendData:element )
+      .then((HttpRequest resp) {
+    // Do something with the response.
+     responseText = resp.responseText;
+  });
+}

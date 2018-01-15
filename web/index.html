@@ -29,18 +29,22 @@
     </div> 
     </div>
 
-<!--生词界面-->
-    <div id="newwordpage" style="display:none">  
-    <div id="header2">
-      <div class="header2">
-          <div class="bar6">
-              <div class="pform">
-                  <input id="search1" type="text" placeholder="请输入您要搜索的内容">
-                  <button id="search_word1" type="submit" ></button>
-              </div>
-          </div>
-      </div>
+<!--不动的搜索框，可以在雅思，四六级，生词本界面都可以搜索单词-->
+<div id="searchedword_div" style="display:none">  
+  <div id="header2">
+    <div class="header2">
+        <div class="bar6">
+            <div class="pform">
+                <input id="search1" type="text" placeholder="请输入您要搜索的内容">
+                <button id="search_word1" type="submit" ></button>
+            </div>
+        </div>
     </div>
+  </div>
+</div>
+
+<!--生词界面，目前是生词本的list-->
+    <div id="newwordpage" style="display:none">  
     <div class="newword">
     <table id="sample_table_id">
         <tr>
@@ -60,10 +64,9 @@
       </table>
     </div>
     </div>
-    </div>
 
 
-<!--首页-->
+<!--首页，可以移动的搜索框仅在首页有效-->
   <div id="firstpage">
     <br></br><br></br><br></br>
     <p align="center">
@@ -84,20 +87,22 @@
             </tbody>
           </table>
       </div>
+    </div> 
     </div>
+
+<!--搜索结果的div-->
     <div class="means" id="mean_div" style="display:none">
-  <ul class="searchedwordclass" id="searchedword"></ul>
-    <ul class="meanListclass" id="meanList">
-    </ul>
-    <div id="response"></div>
-    <button id="add-newword" type="button" style="float:right"></button>
-    <br>
-    <br>
-  </div> 
-    </div>
+      <ul class="searchedwordclass" id="searchedword"></ul>
+        <ul class="meanListclass" id="meanList">
+        </ul>
+        <div id="response"></div>
+        <button id="add-newword" type="button" style="float:right"></button>
+        <br>
+        <br>
+      </div>
   
  
-<!--单词界面-->
+<!--雅思单词界面-->
     <div id="wordspage" style="display:none">
       <div class="block">
         <div class="firstblock">
