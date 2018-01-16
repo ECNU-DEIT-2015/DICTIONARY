@@ -323,20 +323,8 @@ void listString(String jsonString) {
     for (int i = 60; i < 70; i++) {
     querySelector('#thirdlist2').children.add(new LIElement()..text = portmanteaux[i]);
   }
-    for (int i = 70; i < 80; i++) {
+    for (int i = 70; i < portmanteaux.length; i++) {
      querySelector('#fourthlist2').children.add(new LIElement()..text = portmanteaux[i]);
-  }
-         for (int i = 80; i <90; i++) {
-    querySelector('#firstlist3').children.add(new LIElement()..text = portmanteaux[i]);
-  }
-       for (int i = 90; i < 100; i++) {
-   querySelector('#secondlist3').children.add(new LIElement()..text = portmanteaux[i]);
-  }
-    for (int i = 100; i < 110; i++) {
-    querySelector('#thirdlist3').children.add(new LIElement()..text = portmanteaux[i]);
-  }
-    for (int i = 110; i < portmanteaux.length; i++) {
-     querySelector('#fourthlist3').children.add(new LIElement()..text = portmanteaux[i]);
   }
   
 }

@@ -140,7 +140,7 @@ Future<String> getIeltsFromDB() async {
     
     int i=1;
     //var results = await pool.query("select Ielts.word, Ielts.means from Ielts where id='  "+ j +"  ' ");
-    var results = await pool.query("select Ielts.word, Ielts.means from Ielts where id<121");
+    var results = await pool.query("select Ielts.word, Ielts.means from Ielts where id<81");
        
      await results.forEach((row) { 
  
@@ -160,11 +160,7 @@ Future<String> getIeltsFromDB() async {
                            WLIST[41],WLIST[42],WLIST[43],WLIST[44],WLIST[45],WLIST[46],WLIST[47],WLIST[48],WLIST[49],WLIST[50],
                            WLIST[51],WLIST[52],WLIST[53],WLIST[54],WLIST[55],WLIST[56],WLIST[57],WLIST[58],WLIST[59],WLIST[60],
                            WLIST[61],WLIST[62],WLIST[63],WLIST[64],WLIST[65],WLIST[66],WLIST[67],WLIST[68],WLIST[69],WLIST[70],
-                           WLIST[71],WLIST[72],WLIST[73],WLIST[74],WLIST[75],WLIST[76],WLIST[77],WLIST[78],WLIST[79],WLIST[80],
-                           WLIST[81],WLIST[82],WLIST[83],WLIST[84],WLIST[85],WLIST[86],WLIST[87],WLIST[88],WLIST[89],WLIST[90],
-                           WLIST[91],WLIST[92],WLIST[93],WLIST[94],WLIST[95],WLIST[96],WLIST[97],WLIST[98],WLIST[99],WLIST[100],
-                           WLIST[101],WLIST[102],WLIST[103],WLIST[104],WLIST[105],WLIST[106],WLIST[107],WLIST[108],WLIST[109],WLIST[110],
-                           WLIST[111],WLIST[112],WLIST[113],WLIST[114],WLIST[115],WLIST[116],WLIST[117],WLIST[118],WLIST[119],WLIST[120]]);
+                           WLIST[71],WLIST[72],WLIST[73],WLIST[74],WLIST[75],WLIST[76],WLIST[77],WLIST[78],WLIST[79],WLIST[80]]);
     print(response); 
     return response;
 }
