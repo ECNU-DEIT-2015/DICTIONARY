@@ -311,8 +311,32 @@ void listString(String jsonString) {
     for (int i = 20; i < 30; i++) {
     querySelector('#thirdlist').children.add(new LIElement()..text = portmanteaux[i]);
   }
-    for (int i = 30; i < portmanteaux.length; i++) {
+    for (int i = 30; i < 40; i++) {
      querySelector('#fourthlist').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+       for (int i = 40; i <50; i++) {
+    querySelector('#firstlist2').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+       for (int i = 50; i < 60; i++) {
+   querySelector('#secondlist2').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+    for (int i = 60; i < 70; i++) {
+    querySelector('#thirdlist2').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+    for (int i = 70; i < 80; i++) {
+     querySelector('#fourthlist2').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+         for (int i = 80; i <90; i++) {
+    querySelector('#firstlist3').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+       for (int i = 90; i < 100; i++) {
+   querySelector('#secondlist3').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+    for (int i = 100; i < 110; i++) {
+    querySelector('#thirdlist3').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+    for (int i = 110; i < portmanteaux.length; i++) {
+     querySelector('#fourthlist3').children.add(new LIElement()..text = portmanteaux[i]);
   }
   
 }
