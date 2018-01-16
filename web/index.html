@@ -92,8 +92,26 @@
 
 <!--搜索结果的div-->
     <div class="means" id="mean_div" style="display:none">
-      <ul class="searchedwordclass" id="searchedword"></ul>
+      <table>
+        <tr>
+          <td>
+              <ul class="searchedwordclass" id="searchedword">
+          </td>
+          <td>
+             <div  style="display:none" id="add_div"><image src="pic/addpic.png"  title="已添加到生词本" width="30" height="30" /></div>
+          </td>
+        </tr>
+      </table>  
+      </ul>
+      <br>
         <ul class="meanListclass" id="meanList">
+        </ul>
+        <br>
+        <hr color="#CF747C">
+        <br>
+        <ul class="searchedwordclass" id="searchedsent"></ul>
+        <br>
+        <ul class="meanListclass" id="sentList">
         </ul>
         <div id="response"></div>
         <button id="add-newword" type="button" style="float:right"></button>

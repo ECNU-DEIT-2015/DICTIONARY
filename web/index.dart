@@ -33,6 +33,7 @@ var firstlist_button=document.getElementById("firstlist_button");
 var firstlist_label=document.getElementById("firstlist_label");
 var mean_div=document.getElementById("mean_div");
 var searchedword_div=document.getElementById("searchedword_div");
+var add_div=document.getElementById("add_div");
 var newwordpage=document.getElementById("newwordpage");
 String responseText;
 var newword=new Map();
@@ -48,10 +49,12 @@ main() async {
 
   querySelector('#search_word').onClick.listen(makePostRequest);
   querySelector('#search_word').onClick.listen(makeRequest);
+  querySelector('#search_word').onClick.listen(makesentRequest);
   querySelector('#search_word1').onClick.listen(makePostRequest1);
   querySelector('#search1').onChange.listen((e)=>mean_div.style.display='none');
   querySelector('#search').onChange.listen((e)=>mean_div.style.display='none');
   querySelector('#search_word1').onClick.listen(makeRequest);
+  querySelector('#search_word1').onClick.listen(makesentRequest);
   querySelector('#add-newword').onClick.listen(addToDoItem); 
   querySelector('#delete-all').onClick.listen(deleteAllElements);
   querySelector('#Index').onClick.listen(firstpageduang);
@@ -138,11 +141,13 @@ searchedword_div.style.display='block';
 void addToDoItem(Event e){ 
   int i;
   var nextToDo = new LIElement();
+   
   if(countNewWord==0)
   {
   newword[countNewWord++]=responseText;
   nextToDo.text=  responseText;
   querySelector('#sample_list_id').children.add(nextToDo); 
+   add_div.style.display='block';
     }
   else 
   {
@@ -157,13 +162,14 @@ void addToDoItem(Event e){
     {
        newword[countNewWord++]=responseText;      
        nextToDo.text=  responseText;
-       querySelector('#sample_list_id').children.add(nextToDo);        
+       querySelector('#sample_list_id').children.add(nextToDo);      
+      add_div.style.display='block'; 
     }
   }
   nextToDo.onClick.listen((e)=>nextToDo.remove());
   nextToDo.onClick.listen((e)=>b=nextToDo.text);
   nextToDo.onClick.listen(deletedata);
- 
+  
 }
 
 void deletedata(Event e)
@@ -213,6 +219,7 @@ Future makeRequest(Event e) async {
     handleError(e);
   }
 mean_div.style.display='block';
+ add_div.style.display='none';
 }
 
 void processString(String jsonString) {
@@ -226,23 +233,27 @@ void processString(String jsonString) {
   }
 }
 
-void listString(String jsonString) {
-   List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
-     for (int i = 0; i < 10; i++) {
-    querySelector('#firstlist').children.add(new LIElement()..text = portmanteaux[i]);
+Future makesentRequest(Event e) async {
+  var path = 'http://localhost:90/sent/';
+  try {
+    sentString(await HttpRequest.getString(path));
+  } catch (e) {
+    print('Couldn\'t open $path');
+    handleError(e);
   }
-       for (int i = 10; i < 20; i++) {
-   querySelector('#secondlist').children.add(new LIElement()..text = portmanteaux[i]);
-  }
-    for (int i = 20; i < 30; i++) {
-    querySelector('#thirdlist').children.add(new LIElement()..text = portmanteaux[i]);
-  }
-    for (int i = 30; i < portmanteaux.length; i++) {
-     querySelector('#fourthlist').children.add(new LIElement()..text = portmanteaux[i]);
-  }
-  
+mean_div.style.display='block';
 }
 
+void sentString(String jsonString) {
+  List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
+  //List<String> a=JSON.getData()
+  querySelector('#searchedsent').children.clear();
+  querySelector('#searchedsent').children.add(new LIElement()..text = "例句：");
+  querySelector('#sentList').children.clear();
+  for (int i = 0; i < portmanteaux.length; i++) {
+    querySelector('#sentList').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+}
 
 Future makePostRequest(Event e) async {
   
@@ -269,3 +280,23 @@ Future makePostRequest1(Event e) async {
      responseText = resp.responseText;
   });
 }
+
+
+void listString(String jsonString) {
+   List<String> portmanteaux = JSON.decode(jsonString ) as List<String>;
+     for (int i = 0; i < 10; i++) {
+    querySelector('#firstlist').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+       for (int i = 10; i < 20; i++) {
+   querySelector('#secondlist').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+    for (int i = 20; i < 30; i++) {
+    querySelector('#thirdlist').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+    for (int i = 30; i < portmanteaux.length; i++) {
+     querySelector('#fourthlist').children.add(new LIElement()..text = portmanteaux[i]);
+  }
+  
+}
+
+

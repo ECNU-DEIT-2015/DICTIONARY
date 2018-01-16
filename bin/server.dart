@@ -14,6 +14,11 @@ helloWorld() {
   return getDataFromDB();
 }
 
+@app.Route("/sent/")
+hellosent() {
+  return getsentFromDB();
+}
+
 @app.Route("/day1/")
 helloIelts() {
   return getIeltsFromDB();
@@ -49,7 +54,7 @@ Future<String> getWordFromDB(String data) async {
   meanLIST[3]=null;
   int i=0;
   await results.forEach((row) { 
-     meanLIST[i] =''' ${row[0]}   ${row[1]}''';
+     meanLIST[i] =''' ${row[0]}   ${row[1]} ''';
      
      i++;
   }); 
@@ -64,6 +69,8 @@ Future<String> getWordFromDB(String data) async {
  
   return response;
 }
+
+
 
 Future<String> getDataFromDB() async {
   var pool = new ConnectionPool(
@@ -84,6 +91,33 @@ Future<String> getDataFromDB() async {
   await results.forEach((row) { 
 
      response =''' ${row[0]}  ${row[1]}''';
+     meanLIST[i]=response;
+     i++;
+    //  response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");
+  }); 
+  response=JSON.encode([meanLIST[0],meanLIST[1],meanLIST[2],meanLIST[3]]);
+  return response;
+}
+
+Future<String> getsentFromDB() async {
+  var pool = new ConnectionPool(
+      host: 'www.muedu.org',
+      port: 3306,
+      user: 'deit-2015',
+      password: 'deit@2015!',
+      db: 'project_2015_1',
+      max: 5);
+  var results = await pool.query("select  means.Esent,means.Csent from words,means,pos where word='" + data + "' and words.ID=means.wordID and means.posID=pos.ID");
+  String response;
+  var meanLIST = new Map();
+  meanLIST[0]=null;
+  meanLIST[1]=null;
+  meanLIST[2]=null;
+  meanLIST[3]=null;
+  int i=0;
+  await results.forEach((row) { 
+
+     response =''' ${row[0]}. --- ${row[1]}''';
      meanLIST[i]=response;
      i++;
     //  response=JSON.encode("\u8d44\u6599\uff0c\u6750\u6599");

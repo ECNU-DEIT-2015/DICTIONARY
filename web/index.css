@@ -364,22 +364,24 @@ div.search {padding: 30px 0;}
 .means {
   background: #fefefe;
   position: absolute;
-  width: 30%;
+  width: 51%;
   height: 30%;
-  left: 23%;
+  left: 25%;
   top: 25%;
   padding-left: 4.5%;
 }
 .means ul {
-  list-style:none;
+  
   color: #181616;
   font-family: "Microsoft YaHei";
 }
 .searchedwordclass{
+  list-style:none;
   font-size: 20px;
   font-weight: bold;
 }
 .meanListclass{
+  list-style:none;
   font-size: 16px;
 }
 .means button {
@@ -417,4 +419,11 @@ ul {
   left: 25%;
   top: 35%;
   padding-left: 4.5%;
+}
+hr{
+  color: #CF747C;
+}
+
+.label_class{
+  font-size: 10px;
 }
