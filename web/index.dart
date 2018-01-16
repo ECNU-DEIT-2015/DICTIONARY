@@ -29,8 +29,6 @@ var firstpage=document.getElementById("firstpage");
 //var cet4page=document.getElementById("cet4wordspage");
 //var cet6page=document.getElementById("cet6page");
 var ieltspage=document.getElementById("wordspage");
-var firstlist_button=document.getElementById("firstlist_button");
-var firstlist_label=document.getElementById("firstlist_label");
 var mean_div=document.getElementById("mean_div");
 var searchedword_div=document.getElementById("searchedword_div");
 var add_div=document.getElementById("add_div");
@@ -44,6 +42,38 @@ String element;
 var firstday=document.getElementById("1day");
 var secondday=document.getElementById("2day");
 var thirdday=document.getElementById("3day");
+var firstlist_label1=document.getElementById("firstlist_label1");
+var firstlist_button1=document.getElementById("firstlist_button1");
+var secondlist_label1=document.getElementById("secondlist_label1");
+var secondlist_button1=document.getElementById("secondlist_button1");
+var thirdlist_label1=document.getElementById("thirdlist_label1");
+var thirdlist_button1=document.getElementById("thirdlist_button1");
+var fourthlist_label1=document.getElementById("fourthlist_label1");
+var fourthlist_button1=document.getElementById("fourthlist_button1");//第一天
+var firstlist_label2=document.getElementById("firstlist_label2");
+var firstlist_button2=document.getElementById("firstlist_button2");
+var secondlist_label2=document.getElementById("secondlist_label2");
+var secondlist_button2=document.getElementById("secondlist_button2");
+var thirdlist_label2=document.getElementById("thirdlist_label2");
+var thirdlist_button2=document.getElementById("thirdlist_button2");
+var fourthlist_label2=document.getElementById("fourthlist_label2");
+var fourthlist_button2=document.getElementById("fourthlist_button2");//第二天
+var firstlist_label3=document.getElementById("firstlist_label3");
+var firstlist_button3=document.getElementById("firstlist_button3");
+var secondlist_label3=document.getElementById("secondlist_label3");
+var secondlist_button3=document.getElementById("secondlist_button3");
+var thirdlist_label3=document.getElementById("thirdlist_label3");
+var thirdlist_button3=document.getElementById("thirdlist_button3");
+var fourthlist_label3=document.getElementById("fourthlist_label3");
+var fourthlist_button3=document.getElementById("fourthlist_button3");//第三天
+var day1red=document.getElementById("day1red");
+var day1white=document.getElementById("day1white");
+var day2red=document.getElementById("day2red");
+var day2white=document.getElementById("day2white");
+var day3red=document.getElementById("day3red");
+var day3white=document.getElementById("day3white");
+
+
 
 
 main() async {
@@ -64,18 +94,26 @@ main() async {
   querySelector('#NewWord').onClick.listen(newwordpageduang);
   querySelector('#search_word').onClick.listen(searchedwordpageduang);
   querySelector('#search_word1').onClick.listen(searchedwordpageduang);
-  querySelector('#firstbutton').onClick.listen(firstclickedbutton);
-  querySelector('#secondbutton').onClick.listen(secondclickedbutton);
-  querySelector('#thirdbutton').onClick.listen(thirdclickedbutton);
-  querySelector('#fourthbutton').onClick.listen(fourthclickedbutton);
+  
 
   querySelector('#day1red-button').onClick.listen(day1click);
   querySelector('#day1white-button').onClick.listen(day1click);
   querySelector('#day2red-button').onClick.listen(day2click);
   querySelector('#day2white-button').onClick.listen(day2click);
   querySelector('#day3red-button').onClick.listen(day3click);
-  querySelector('#day3white-button').onClick.listen(day3click);
-
+  querySelector('#day3white-button').onClick.listen(day3click);//三天转换
+  querySelector('#firstbutton1').onClick.listen(firstclickedbutton1);
+  querySelector('#secondbutton1').onClick.listen(secondclickedbutton1);
+  querySelector('#thirdbutton1').onClick.listen(thirdclickedbutton1);
+  querySelector('#fourthbutton1').onClick.listen(fourthclickedbutton1);//第一天完成情况
+  querySelector('#firstbutton2').onClick.listen(firstclickedbutton2);
+  querySelector('#secondbutton2').onClick.listen(secondclickedbutton2);
+  querySelector('#thirdbutton2').onClick.listen(thirdclickedbutton2);
+  querySelector('#fourthbutton2').onClick.listen(fourthclickedbutton2);//第二天完成情况
+  querySelector('#firstbutton3').onClick.listen(firstclickedbutton3);
+  querySelector('#secondbutton3').onClick.listen(secondclickedbutton3);
+  querySelector('#thirdbutton3').onClick.listen(thirdclickedbutton3);
+  querySelector('#fourthbutton3').onClick.listen(fourthclickedbutton3);//第三天完成情况
 
 
   var path = 'http://localhost:90/day1/';
@@ -83,7 +121,14 @@ main() async {
 
 
     firstpage.style.display='block';
-  
+
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+
 }
 
 
@@ -177,24 +222,6 @@ void deletedata(Event e)
 
 void deleteAllElements(Event e) {
   querySelector('#sample_list_id').children.clear();
-}
-
-void firstclickedbutton(Event e) {
-  firstlist_button.style.display='none';
-  firstlist_label.style.display='block';
-}
-
-void secondclickedbutton(Event e) {
-  firstlist_button.style.display='none';
-  
-}
-
-void thirdclickedbutton(Event e) {
-  toDoList.children.clear();
-}
-
-void fourthclickedbutton(Event e) {
-  toDoList.children.clear();
 }
 
 void handleError(Object error) {
@@ -305,3 +332,128 @@ void day3click(Event e){
  secondday.style.display='none';
  thirdday.style.display='block'; 
 }
+
+void firstclickedbutton1(Event e) {
+  firstlist_button1.style.display='none';
+  firstlist_label1.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void secondclickedbutton1(Event e) {
+  secondlist_button1.style.display='none';
+  secondlist_label1.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void thirdclickedbutton1(Event e) {
+  thirdlist_button1.style.display='none';
+  thirdlist_label1.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void fourthclickedbutton1(Event e) {
+  fourthlist_button1.style.display='none';
+  fourthlist_label1.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}//第一天
+
+
+void firstclickedbutton2(Event e) {
+  firstlist_button2.style.display='none';
+  firstlist_label2.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void secondclickedbutton2(Event e) {
+  secondlist_button2.style.display='none';
+  secondlist_label2.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void thirdclickedbutton2(Event e) {
+  thirdlist_button2.style.display='none';
+  thirdlist_label2.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void fourthclickedbutton2(Event e) {
+  fourthlist_button2.style.display='none';
+  fourthlist_label2.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}//第二天
+
+
+void firstclickedbutton3(Event e) {
+  firstlist_button3.style.display='none';
+  firstlist_label3.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void secondclickedbutton3(Event e) {
+  secondlist_button3.style.display='none';
+  secondlist_label3.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void thirdclickedbutton3(Event e) {
+  thirdlist_button3.style.display='none';
+  thirdlist_label3.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void fourthclickedbutton3(Event e) {
+  fourthlist_button3.style.display='none';
+  fourthlist_label3.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}//第三天
