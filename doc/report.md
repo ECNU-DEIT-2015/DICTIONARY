@@ -992,7 +992,13 @@ hr{
 
 ## 我的issue活动
 >在这里列出所有你参与的issue活动，包括你发起的问题，你回答的问题，你可以使用贴图展示，例子：
-![myissues](https://cloud.githubusercontent.com/assets/1710178/21607127/0b4ba550-d1ef-11e6-8e4c-9306ce07a7d4.png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/1%20(2).png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/2%20(2).png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/3%20(2).png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/4.png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/5.png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/6.png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/7.png)
 
 
 # 我的自评
