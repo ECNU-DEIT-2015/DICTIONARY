@@ -41,8 +41,10 @@ int countNewWord=0;
 String b;
 String element;
 
+var firstday=document.getElementById("1day");
+var secondday=document.getElementById("2day");
+var thirdday=document.getElementById("3day");
 
-  
 
 main() async {
   
@@ -59,8 +61,6 @@ main() async {
   querySelector('#delete-all').onClick.listen(deleteAllElements);
   querySelector('#Index').onClick.listen(firstpageduang);
   querySelector('#Ielts').onClick.listen(ieltspageduang);
-  querySelector('#Cet4').onClick.listen(cet6pageduang);
-  querySelector('#Cet6').onClick.listen(cet4pageduang);
   querySelector('#NewWord').onClick.listen(newwordpageduang);
   querySelector('#search_word').onClick.listen(searchedwordpageduang);
   querySelector('#search_word1').onClick.listen(searchedwordpageduang);
@@ -68,6 +68,14 @@ main() async {
   querySelector('#secondbutton').onClick.listen(secondclickedbutton);
   querySelector('#thirdbutton').onClick.listen(thirdclickedbutton);
   querySelector('#fourthbutton').onClick.listen(fourthclickedbutton);
+
+  querySelector('#day1red-button').onClick.listen(day1click);
+  querySelector('#day1white-button').onClick.listen(day1click);
+  querySelector('#day2red-button').onClick.listen(day2click);
+  querySelector('#day2white-button').onClick.listen(day2click);
+  querySelector('#day3red-button').onClick.listen(day3click);
+  querySelector('#day3white-button').onClick.listen(day3click);
+
 
 
   var path = 'http://localhost:90/day1/';
@@ -100,23 +108,6 @@ mean_div.style.display='none';
 searchedword_div.style.display='block';
 }
 
-void cet6pageduang(Event e){
- ieltspage.style.display='none';
- firstpage.style.display='none';
- //cet4page.style.display='none';
- newwordpage.style.display='none';
- mean_div.style.display='none';
- searchedword_div.style.display='block';
-}
-
-void cet4pageduang(Event e){
- ieltspage.style.display='none';
-// cet6page.style.display='none';
- firstpage.style.display='none';
- newwordpage.style.display='none';
- mean_div.style.display='none';
- searchedword_div.style.display='block';
-}
 
 void newwordpageduang(Event e){
  ieltspage.style.display='none';
@@ -299,4 +290,18 @@ void listString(String jsonString) {
   
 }
 
-
+void day1click(Event e){
+ firstday.style.display='block';
+ secondday.style.display='none';
+ thirdday.style.display='none'; 
+}
+void day2click(Event e){
+ firstday.style.display='none';
+ secondday.style.display='block';
+ thirdday.style.display='none'; 
+}
+void day3click(Event e){
+ firstday.style.display='none';
+ secondday.style.display='none';
+ thirdday.style.display='block'; 
+}
