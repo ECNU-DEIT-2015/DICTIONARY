@@ -1,1 +1,1017 @@
-report
+# 产品创意
+>你们需要在这里描述你们的产品创意的过程，包括你们的灵感来源，针对什么人群来设计这个产品，你们设计了哪些功能？一开始做的原型的样子（需要附图，要用markdown插入你的图片，关于图片可以在github中使用修改此文档的方式直接上传）  
+>你在创意阶段所做的贡献是什么？
+>*此部分每组同学之间可以有相同的内容*，总字数不能少于1000字。  
+------
+## 创意
+> 在这里，你需要告诉读者你们的项目的灵感来源，需要具体描述怎么就想到这个创意的。  
+
+## 需求
+>在这里，你们需要尝试说服读者，你们项目好在哪里，有哪些功能。     
+
+## 设计的功能列表以及其完成情况
+
+ 设计的功能|承担该功能的组员|任务完成度
+ --|--|--
+  搜索英文单词|html,css,dart(客户端)：李佳璇/dart(客户端，服务器)：韩庆慧/数据库：宋金阳，韩庆慧|100%
+  添加生词本|html,css,dart(客户端)：李佳璇，韩庆慧/dart(客户端，服务器)：韩庆慧|100%
+  每日单词|html,css,dart(客户端)：李佳璇/dart(客户端，服务器）：韩庆慧，李佳璇/数据库：宋金阳|50%
+  删除生词本记录|html,css,dart(客户端)：李佳璇/dart(客户端)：韩庆慧|90%
+
+# 产品技术方案
+## 小组项目的组成和结构
+### 我们小组完成的项目是英语字典，主要有单词查询、单词记忆、生词本这三大功能。
+#### 1.单词查询。单词查询功能主要实现将客户端所接收的单词返回服务器，再与数据库连接，在数据库中查询到对应的结果返回给服务器，经过解析成为我们所需的结果，返回客户端，美化界面后呈现出来。
+#### 2.单词记忆30天。这一功能主要是为用户提供大量单词，分块记忆。我们在每一天的界面都提供40个单词，并且分成四块，每一块记忆完后可以点击完成，当四块都完成后，位于下端的这一天的按钮会由红色变为灰色，这样用户就可以快速准确的得知自己的学习进度，不用再一个一个点击进去看。目前我们小组完成了雅思单词的1至3天的部分。
+#### 3.生词本。这也是提供生词以记忆的一项功能。在用户搜索完单词后会提供一个按钮，将该单词添加到生词本，方便对生词的积累，在完成一个生词本的记忆后可在单词本界面删除记录，清空生词本。
+## 我在小组合作中负责的部分主要有：
+#### 1.创意提供，需求分析，决定小组要实现的功能，以及分工；
+#### 2.所有界面的设计和前端所有代码编写。
+#### 3.前端简单交互功能的实现：鼠标点击事件，页面转换，单词记忆的进度显示功能实现。
+## 主要用到的技术：
+### 客户端
+#### 1.界面的位置与布局。在部件很多的情况下合理安排每一div的位置为fixed、absolute或者relative，从而实现头部部件的固定；
+#### 2.鼠标点击事件。通过对不同div的display的是改变（none或者block）而实现界面的转换，实质就是div的隐藏和显示；
+#### 3.对按钮状态的监听。在单词记忆界面，通过判断按钮的状态，即显示或不显示，若每一天的四个完成按钮都被点击了，则将这一天的按钮变灰，来实现进度的跟进。
+### 服务器
+#### 1.@app.Route("/data/")，设置路径。客户端的不同的按钮或者链接都具有不一样的功能，因此需要监听不同的路径，如获取数据库的值，向数据库返回值等。客户端的每个按钮对应的监听事件都需要通过获取服务器端对应的route才能与服务器建立连接，并进一步访问数据库。如此处客户端对应的路径地址为：'http://localhost:90/data/'。
+#### 2.HttpRequest请求。用以访问服务器，从数据库获取数据，同样可以向数据库传送数据。HttpRequest.then(){}；无论返回结果如何，都可以通过then来将访问结果显示在客户端。
+#### 3.try{}catch(e){}，出错处理机制。
+
+# 我在小组中的分工
+### 我在小组中负责的是客户端的大部分内容，包括界面设计、代码编写和前段交互的实现。虽然小组最终没能实现之前设计的所有功能，比如登录注册等，但已经尽力做到我们想要的效果了，很棒！
+   组员|分数
+ --|--
+  李佳璇|9
+  韩庆慧|9
+  宋金阳|7
+  
+
+# 我的编程实践活动
+## 我的代码
+  
+```dart
+///index.dart部分 大量相同内容，实现同一功能
+var firstday=document.getElementById("1day");
+var secondday=document.getElementById("2day");
+var thirdday=document.getElementById("3day");
+var firstlist_label1=document.getElementById("firstlist_label1");
+var firstlist_button1=document.getElementById("firstlist_button1");
+var secondlist_label1=document.getElementById("secondlist_label1");
+var secondlist_button1=document.getElementById("secondlist_button1");
+var thirdlist_label1=document.getElementById("thirdlist_label1");
+var thirdlist_button1=document.getElementById("thirdlist_button1");
+var fourthlist_label1=document.getElementById("fourthlist_label1");
+var fourthlist_button1=document.getElementById("fourthlist_button1");//第一天
+var firstlist_label2=document.getElementById("firstlist_label2");
+var firstlist_button2=document.getElementById("firstlist_button2");
+var secondlist_label2=document.getElementById("secondlist_label2");
+var secondlist_button2=document.getElementById("secondlist_button2");
+var thirdlist_label2=document.getElementById("thirdlist_label2");
+var thirdlist_button2=document.getElementById("thirdlist_button2");
+var fourthlist_label2=document.getElementById("fourthlist_label2");
+var fourthlist_button2=document.getElementById("fourthlist_button2");//第二天
+var firstlist_label3=document.getElementById("firstlist_label3");
+var firstlist_button3=document.getElementById("firstlist_button3");
+var secondlist_label3=document.getElementById("secondlist_label3");
+var secondlist_button3=document.getElementById("secondlist_button3");
+var thirdlist_label3=document.getElementById("thirdlist_label3");
+var thirdlist_button3=document.getElementById("thirdlist_button3");
+var fourthlist_label3=document.getElementById("fourthlist_label3");
+var fourthlist_button3=document.getElementById("fourthlist_button3");//第三天
+var day1red=document.getElementById("day1red");
+var day1white=document.getElementById("day1white");
+var day2red=document.getElementById("day2red");
+var day2white=document.getElementById("day2white");
+var day3red=document.getElementById("day3red");
+var day3white=document.getElementById("day3white");
+
+
+main() async {
+  
+
+  querySelector('#search_word').onClick.listen(makePostRequest);
+  querySelector('#search_word').onClick.listen(makeRequest);
+  querySelector('#search_word').onClick.listen(makesentRequest);
+  querySelector('#search_word1').onClick.listen(makePostRequest1);
+  querySelector('#search1').onChange.listen((e)=>mean_div.style.display='none');
+  querySelector('#search').onChange.listen((e)=>mean_div.style.display='none');
+  querySelector('#search_word1').onClick.listen(makeRequest);
+  querySelector('#search_word1').onClick.listen(makesentRequest);
+  querySelector('#add-newword').onClick.listen(addToDoItem); 
+  querySelector('#delete-all').onClick.listen(deleteAllElements);
+  querySelector('#Index').onClick.listen(firstpageduang);
+  querySelector('#Ielts').onClick.listen(ieltspageduang);
+  querySelector('#NewWord').onClick.listen(newwordpageduang);
+  querySelector('#search_word').onClick.listen(searchedwordpageduang);
+  querySelector('#search_word1').onClick.listen(searchedwordpageduang);
+  
+
+  querySelector('#day1red-button').onClick.listen(day1click);
+  querySelector('#day1white-button').onClick.listen(day1click);
+  querySelector('#day2red-button').onClick.listen(day2click);
+  querySelector('#day2white-button').onClick.listen(day2click);
+  querySelector('#day3red-button').onClick.listen(day3click);
+  querySelector('#day3white-button').onClick.listen(day3click);//三天转换
+  querySelector('#firstbutton1').onClick.listen(firstclickedbutton1);
+  querySelector('#secondbutton1').onClick.listen(secondclickedbutton1);
+  querySelector('#thirdbutton1').onClick.listen(thirdclickedbutton1);
+  querySelector('#fourthbutton1').onClick.listen(fourthclickedbutton1);//第一天完成情况
+  querySelector('#firstbutton2').onClick.listen(firstclickedbutton2);
+  querySelector('#secondbutton2').onClick.listen(secondclickedbutton2);
+  querySelector('#thirdbutton2').onClick.listen(thirdclickedbutton2);
+  querySelector('#fourthbutton2').onClick.listen(fourthclickedbutton2);//第二天完成情况
+  querySelector('#firstbutton3').onClick.listen(firstclickedbutton3);
+  querySelector('#secondbutton3').onClick.listen(secondclickedbutton3);
+  querySelector('#thirdbutton3').onClick.listen(thirdclickedbutton3);
+  querySelector('#fourthbutton3').onClick.listen(fourthclickedbutton3);//第三天完成情况
+
+  var path = 'http://localhost:90/day1/';
+   listString(await HttpRequest.getString(path));
+    firstpage.style.display='block';
+}
+
+void day1click(Event e){
+ firstday.style.display='block';
+ secondday.style.display='none';
+ thirdday.style.display='none'; 
+}
+void day2click(Event e){
+ firstday.style.display='none';
+ secondday.style.display='block';
+ thirdday.style.display='none'; 
+}
+void day3click(Event e){
+ firstday.style.display='none';
+ secondday.style.display='none';
+ thirdday.style.display='block'; 
+}
+
+void firstclickedbutton1(Event e) {
+  firstlist_button1.style.display='none';
+  firstlist_label1.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void secondclickedbutton1(Event e) {
+  secondlist_button1.style.display='none';
+  secondlist_label1.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void thirdclickedbutton1(Event e) {
+  thirdlist_button1.style.display='none';
+  thirdlist_label1.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void fourthclickedbutton1(Event e) {
+  fourthlist_button1.style.display='none';
+  fourthlist_label1.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}//第一天
+
+
+void firstclickedbutton2(Event e) {
+  firstlist_button2.style.display='none';
+  firstlist_label2.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void secondclickedbutton2(Event e) {
+  secondlist_button2.style.display='none';
+  secondlist_label2.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void thirdclickedbutton2(Event e) {
+  thirdlist_button2.style.display='none';
+  thirdlist_label2.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void fourthclickedbutton2(Event e) {
+  fourthlist_button2.style.display='none';
+  fourthlist_label2.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}//第二天
+
+
+void firstclickedbutton3(Event e) {
+  firstlist_button3.style.display='none';
+  firstlist_label3.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void secondclickedbutton3(Event e) {
+  secondlist_button3.style.display='none';
+  secondlist_label3.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void thirdclickedbutton3(Event e) {
+  thirdlist_button3.style.display='none';
+  thirdlist_label3.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}
+void fourthclickedbutton3(Event e) {
+  fourthlist_button3.style.display='none';
+  fourthlist_label3.style.display='block';
+  if(firstlist_label1.style.display=='block'&&secondlist_label1.style.display=='block'&&thirdlist_label1.style.display=='block'&&fourthlist_label1.style.display=='block')
+  {day1red.style.display='none';day1white.style.display='block';}
+  if(firstlist_label2.style.display=='block'&&secondlist_label2.style.display=='block'&&thirdlist_label2.style.display=='block'&&fourthlist_label2.style.display=='block')
+  {day2red.style.display='none';day2white.style.display='block';}
+  if(firstlist_label3.style.display=='block'&&secondlist_label3.style.display=='block'&&thirdlist_label3.style.display=='block'&&fourthlist_label3.style.display=='block')
+  {day3red.style.display='none';day3white.style.display='block';}
+}//第三天
+```
+```html
+///html部分
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DICTIONARY</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body> 
+  <div id="head" class="header">
+    <div>
+      <img src="pic/cidian.png"  /> 
+      <div class="Index-c"><button id="Index" type="button"></button></div>
+      <div class="Ielts-c"><button id="Ielts" type="button"></button></div>
+      <div class="Cet4-c"><button id="Cet4" type="button"></button></div>
+      <div class="Cet6-c"><button id="Cet6" type="button"></button></div>
+      <div class="NewWord-c"><button id="NewWord" type="button"></button></div>
+      </div>
+<!--     <div class="user-name">
+      <p>Hello, User</p>
+      </div>   
+    --> 
+    <div class="user" id="user">
+      <div class="Login-c"><button id="Login" type="submit"></button></div>
+      <div class="Register-c"><button id="Register" type="submit"></button></div>
+    </div> 
+    </div>
+
+<!--不动的搜索框，可以在雅思，四六级，生词本界面都可以搜索单词-->
+<div id="searchedword_div" style="display:none">  
+  <div id="header2">
+    <div class="header2">
+        <div class="bar6">
+            <div class="pform">
+                <input id="search1" type="text" placeholder="请输入您要搜索的内容">
+                <button id="search_word1" type="submit" ></button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!--生词界面，目前是生词本的list-->
+    <div id="newwordpage" style="display:none">  
+    <div class="newword">
+    <table id="sample_table_id">
+        <tr>
+          <td class="text">
+            生词本
+          </td>
+          <td>
+              <button id="delete-all" type="button" style="float:right"> </button>
+          </td>
+        </tr>
+        <tr>        
+          <td>
+            <p id="attention"></p>
+          <ul id="sample_list_id" style="list-style-type:none" title="鼠标单击删除生词" ></ul>
+          </td>  
+        </tr>
+      </table>
+      <hr color="#C90F1D">
+    </div>
+    </div>
+
+
+<!--首页，可以移动的搜索框仅在首页有效-->
+  <div id="firstpage">
+    <br></br><br></br><br></br>
+    <p align="center">
+      <img src="pic/dictionary.png" width="400" height="70" />
+    </p>
+    </br></br>
+    <div class="bar6">
+      <div class="pform">
+          <input id="search" type="text" placeholder="请输入您要搜索的内容">
+          <button id="search_word" type="submit" ></button>
+      </div>
+    </div> 
+    </div>
+
+<!--搜索结果的div-->
+    <div class="means" id="mean_div" style="display:none">
+      <table>
+        <tr>
+          <td>
+              <ul class="searchedwordclass" id="searchedword">
+          </td>
+          <td>
+             <div  style="display:none" id="add_div"><image src="pic/addpic.png"  title="已添加到生词本" width="30" height="30" /></div>
+          </td>
+        </tr>
+      </table>  
+      </ul>
+      <br>
+        <ul class="meanListclass" id="meanList">
+        </ul>
+        <br>
+        <hr color="#CF747C">
+        <br>
+        <ul class="searchedwordclass" id="searchedsent"></ul>
+        <br>
+        <ul class="meanListclass" id="sentList">
+        </ul>
+        <div id="response"></div>
+        <button id="add-newword" type="button" style="float:right"></button>
+        <br>
+        <br>
+      </div>
+  
+ 
+<!--雅思单词界面-->
+    <div id="wordspage" style="display:none">
+      <div class="block">
+        <div class="ielts"><img src="pic/IELTS.png" /></div>
+      <div id="1day" style="display:block">
+        <div class="firstblock">
+          <img src="pic/2.gif"/>
+          <ol id="firstlist" type="2" > 
+          </ol>
+          <div class="image" id="firstlist_label1" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+          <div id="firstlist_button1"><button id="firstbutton1"></button></div>
+         </div>
+        <div class="secondblock">
+          <img src="pic/3.gif"/>
+          <ol id="secondlist" type="2">
+          </ol>
+          <div class="image" id="secondlist_label1" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+          <div id="secondlist_button1"><button id="secondbutton1"></button></div>
+         </div>
+        <div class="thirdblock">
+          <img src="pic/4.gif"/>
+          <ol id="thirdlist" type="2">
+          </ol>
+          <div class="image" id="thirdlist_label1" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+          <div id="thirdlist_button1"><button id="thirdbutton1"></button></div>
+         </div>
+        <div class="fourthblock">
+          <img src="pic/5.gif"/>  
+          <ol id="fourthlist" type="2">
+          </ol>
+          <div class="image" id="fourthlist_label1" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+          <div id="fourthlist_button1"><button id="fourthbutton1"></button></div> 
+         </div>
+      </div>
+
+      <div id="2day" style="display:none">
+          <div class="firstblock">
+              <img src="pic/2.gif"/>
+              <ol id="firstlist2" type="2" > 
+              </ol>
+              <div class="image" id="firstlist_label2" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+              <div id="firstlist_button2"><button id="firstbutton2"></button></div>
+             </div>
+            <div class="secondblock">
+              <img src="pic/3.gif"/>
+              <ol id="secondlist2" type="2">
+              </ol>
+              <div class="image" id="secondlist_label2" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+              <div id="secondlist_button2"><button id="secondbutton2"></button></div>
+             </div>
+            <div class="thirdblock">
+              <img src="pic/4.gif"/>
+              <ol id="thirdlist2" type="2">
+              </ol>
+              <div class="image" id="thirdlist_label2" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+              <div id="thirdlist_button2"><button id="thirdbutton2"></button></div>
+             </div>
+            <div class="fourthblock">
+              <img src="pic/5.gif"/>  
+              <ol id="fourthlist2" type="2">
+              </ol>
+              <div class="image" id="fourthlist_label2" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+              <div id="fourthlist_button2"><button id="fourthbutton2"></button></div> 
+             </div>
+          
+        </div>
+
+        <div id="3day" style="display:none">
+            <div class="firstblock">
+                <img src="pic/2.gif"/>
+                <ol id="firstlist3" type="2" > 
+                </ol>
+                <div class="image" id="firstlist_label3" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+                <div id="firstlist_button3"><button id="firstbutton3"></button></div>
+               </div>
+              <div class="secondblock">
+                <img src="pic/3.gif"/>
+                <ol id="secondlist3" type="2">
+                </ol>
+                <div class="image" id="secondlist_label3" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+                <div id="secondlist_button3"><button id="secondbutton3"></button></div>
+               </div>
+              <div class="thirdblock">
+                <img src="pic/4.gif"/>
+                <ol id="thirdlist3" type="2">
+                </ol>
+                <div class="image" id="thirdlist_label3" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+                <div id="thirdlist_button3"><button id="thirdbutton3"></button></div>
+               </div>
+              <div class="fourthblock">
+                <img src="pic/5.gif"/>  
+                <ol id="fourthlist3" type="2">
+                </ol>
+                <div class="image" id="fourthlist_label3" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+                <div id="fourthlist_button3"><button id="fourthbutton3"></button></div> 
+               </div>    
+          </div>
+
+      </div>
+
+      <div class="day">
+        <div id="day1red" style="display:block"><div class="day1-c"><button id="day1red-button">1</button></div></div>
+        <div id="day2red" style="display:block"><div class="day2-c"><button id="day2red-button">2</button></div></div>
+        <div id="day3red" style="display:block"><div class="day3-c"><button id="day3red-button">3</button></div></div>
+        <div id="day4red" style="display:block"><div class="day4-c"><button id="day4red-button">4</button></div></div>
+        <div id="day5red" style="display:block"><div class="day5-c"><button id="day5red-button">5</button></div></div>
+        <div id="day6red" style="display:block"><div class="day6-c"><button id="day6red-button">6</button></div></div>
+        <div id="day7red" style="display:block"><div class="day7-c"><button id="day7red-button">7</button></div></div>
+        <div id="day8red" style="display:block"><div class="day8-c"><button id="day8red-button">8</button></div></div>
+        <div id="day9red" style="display:block"><div class="day9-c"><button id="day9red-button">9</button></div></div>
+        <div id="day10red" style="display:block"><div class="day10-c"><button id="day10red-button">10</button></div></div>
+
+        <div id="day1white" style="display:none"><div class="day1-w"><button id="day1white-button">1</button></div></div>
+        <div id="day2white" style="display:none"><div class="day2-w"><button id="day2white-button">2</button></div></div>
+        <div id="day3white" style="display:none"><div class="day3-w"><button id="day3white-button">3</button></div></div>
+        <div id="day4white" style="display:none"><div class="day4-w"><button id="day4white-button">4</button></div></div>
+        <div id="day5white" style="display:none"><div class="day5-w"><button id="day5white-button">5</button></div></div>
+        <div id="day6white" style="display:none"><div class="day6-w"><button id="day6white-button">6</button></div></div>
+        <div id="day7white" style="display:none"><div class="day7-w"><button id="day7white-button">7</button></div></div>
+        <div id="day8white" style="display:none"><div class="day8-w"><button id="day8white-button">8</button></div></div>
+        <div id="day9white" style="display:none"><div class="day9-w"><button id="day9white-button">9</button></div></div>
+        <div id="day10white" style="display:none"><div class="day10-w"><button id="day10white-button">10</button></div></div>
+      </div>
+
+     </div>
+
+    
+
+
+
+  <script type="application/dart" src="index.dart"></script>
+  <script src="packages/browser/dart.js"></script>
+</body>
+
+</html>
+```
+```css
+///css部分
+/*
+body {
+    background-color: #F8F8F8;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.2em;
+    margin: 15px;
+  }
+  
+  h1, p {
+    color: #333;
+  }
+  
+  #sample_container_id {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  #sample_text_id {
+    font-size: 24pt;
+    text-align: center;
+    margin-top: 140px;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #sample_studentid_id {
+    font-size: 24pt;
+    text-align: center;
+    margin-top: 140px;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #getData {
+    font-size: 16pt;
+    text-align: center;
+    margin-left: center;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #search {
+    font-size: 16pt;
+    text-align: left;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #search_word {
+    font-size: 16pt;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  */
+
+  *{
+    box-sizing: border-box;
+  }
+  
+body {
+  margin: 0;
+  padding: 0;
+  background: #fefefe;
+  font-weight: 500;
+  font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
+}
+
+#firstpage {
+  width: 700px;
+  height: 820px;
+  margin: 0 auto;
+}
+input, button {
+  border: none;
+  outline: none;
+}
+
+input {
+  width: 100%;
+  height: 42px;
+  padding-left: 13px;
+  padding-top:1px;
+  font-size: 20px;
+}
+div.search {padding: 30px 0;}
+
+.pform {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+}
+/*输入框字体*/
+::-webkit-input-placeholder{
+  font-size: 14px; 
+  font-family: "Microsoft YaHei";
+}
+.bar6 {
+  background: #fefefe;
+  padding: 30px 0;
+}
+.bar6 input {
+  border: 2px solid #c5464a;
+  border-radius: 5px;
+  background: transparent;
+  top: 0;
+  right: 0;
+}
+.bar6 button {
+  background: #c5464a;
+  border-radius: 0 5px 5px 0;
+  width: 75px;
+  top: 0;
+  right: 0;
+  height: 42px;
+  cursor: pointer;
+  position: absolute;
+}
+.bar6 button:before {
+  content: "搜索";
+  font-size: 15px;
+  color: #F9F0DA;
+  font-family: "Microsoft YaHei";
+}
+
+.bar6 table {
+  font-family: '微软雅黑', '宋体', '黑体';
+}
+ 
+.bar6 td {
+  background-color: #fefefe;
+  height: 24px;
+  width: 525px;
+}
+
+.bar6 td:hover {
+  background-color: rgb(168,213,252);
+  cursor: default;
+}
+
+
+/* 头部 */
+.header {
+  background: #F4F4F7;
+  z-index: 998;
+  width: 1333px;
+  height: 50px;
+  position: fixed;
+  left: 10px;
+  /*opacity: 0.5;*/
+  border-bottom: 1px solid #C6C6C7;
+}
+.header img {
+  position: fixed;
+  left: 15%;
+  top: 6px;
+  width: 76px;
+  height: 38px;
+}
+.header button {
+  background: #F4F4F7;
+  border-radius: 2px;
+  position: fixed;
+  cursor: pointer;
+}
+.Index-c button {left: 29%;top: 11px;}
+.Ielts-c button {left: 37%;top: 11px;}
+.Cet4-c button {/*left: 637px;*/left: 47%;top: 11px;}
+.Cet6-c button {left: 57%;top: 11px;}
+.NewWord-c button {left: 67%;top: 11px;}
+#Index:before {
+  content: "首页";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Ielts:before {
+  content: "雅思单词";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Cet4:before {
+  content: "四级单词";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Cet6:before {
+  content: "六级单词";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#NewWord:before {
+  content: "生词本";
+  font-size: 16px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Index:hover::before {color: #C90F1D;}
+#Ielts:hover::before {color: #C90F1D;}
+#Cet4:hover::before {color: #C90F1D;}
+#Cet6:hover::before {color: #C90F1D;}
+#NewWord:hover::before {color: #C90F1D;}
+.Login-c button {
+  right: 15%;
+  top: 13px;
+  width: 55px;
+  height: 25px;
+  border: 1px solid #C6C6C7;
+}
+.Register-c button {
+  right: 10%;
+  top: 13px;
+  width: 55px;
+  height: 25px;
+  border: 1px solid #C6C6C7;
+}
+#Login:before {
+  content: "登录";
+  font-size: 15px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Register:before {
+  content: "注册";
+  font-size: 15px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+#Login:hover {border: 1px solid #C90F1D;}
+#Register:hover {border: 1px solid #C90F1D;}
+#Login:hover::before {color: #C90F1D;}
+#Register:hover::before {color: #C90F1D;}
+.user-name p {
+  position: fixed;
+  right: 18%;
+  font-size: 15px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+  cursor: pointer;
+}
+.user-name p:hover {color: #c5464a;}
+
+
+/* 单词页面 */
+.firstblock {
+  background: #fffffe;
+  position: absolute;
+  right: 51.5%;
+  top: 29%;
+  width: 35%;
+  height: 50%;
+  border: 1px solid #D8D8DB;
+  padding: 2%;
+}
+.firstblock img {width: 60%;height: 60%;position: absolute;left: 23%;top: 27%;}
+.firstblock ol {position: absolute;left: 9%;top: 8%;}
+
+.secondblock {
+  background: #ffffff;
+  position: absolute;
+  left: 51.5%;
+  top: 29%;
+  width: 35%;
+  height: 50%;
+  border: 1px solid #D8D8DB;
+  padding: 2%;
+}
+.secondblock img {width: 53%;height: 70%;position: absolute;left: 23%;top: 13%;}
+.secondblock ol {position: absolute;left: 9%;top: 8%;}
+
+.thirdblock {
+  background: #fefefe;
+  position: absolute;
+  right: 51.5%;
+  top: 85%;
+  width: 35%;
+  height: 50%;
+  border: 1px solid #D8D8DB;
+  padding: 2%;  
+}
+.thirdblock img {width: 54%;height: 55%;position: absolute;left: 23%;top: 23%;}
+.thirdblock ol {position: absolute;left: 9%;top: 8%;}
+
+.fourthblock {
+  background: #ffffff;
+  position: absolute;
+  left: 51.5%;
+  top: 85%;
+  width: 35%;
+  height: 50%;
+  border: 1px solid #D8D8DB;
+  padding: 2%;
+}
+.fourthblock img {width: 60%;height: 60%;position: absolute;left: 19%;top: 23%;}
+.fourthblock ol {position: absolute;left: 9%;top: 8%;}
+.ielts img {position: fixed;top: 12%;left: 11%;z-index: 999;width: 9%;height: 7%;}
+.image img {width: 11%;height: 11%;position: absolute;left:2%;top:3%;}
+.block button {
+  position: absolute;
+  top: 88%;
+  left: 40%;
+  width: 20%;
+  height: 10%;
+  background: #CE6971;
+  border: 1px solid #C6C6C7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.block button::before {
+  content: "完成";
+  font-size: 15px;
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+
+.day {
+  position: absolute;
+  left: 15%;
+  top: 145%;
+  width: 70%;
+  height: 30%;
+
+}
+.day button {
+  position: absolute;
+  top: 20%;
+  width: 6%;
+  height: 12%;
+  border: 1px solid #C6C6C7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.day1-c button {position: absolute;left: 2%;background: #CE6971;}
+.day2-c button {position: absolute;left: 12%;background: #CE6971;}
+.day3-c button {position: absolute;left: 22%;background: #CE6971;}
+.day4-c button {position: absolute;left: 32%;background: #CE6971;}
+.day5-c button {position: absolute;left: 42%;background: #CE6971;}
+.day6-c button {position: absolute;left: 52%;background: #CE6971;}
+.day7-c button {position: absolute;left: 62%;background: #CE6971;}
+.day8-c button {position: absolute;left: 72%;background: #CE6971;}
+.day9-c button {position: absolute;left: 82%;background: #CE6971;}
+.day10-c button {position: absolute;left: 92%;background: #CE6971;}
+
+.day1-w button {position: absolute;left: 2%;background: #C5BCBC;}
+.day2-w button {position: absolute;left: 12%;background: #C5BCBC;}
+.day3-w button {position: absolute;left: 22%;background: #C5BCBC;}
+.day4-w button {position: absolute;left: 32%;background: #C5BCBC;}
+.day5-w button {position: absolute;left: 42%;background: #C5BCBC;}
+.day6-w button {position: absolute;left: 52%;background: #C5BCBC;}
+.day7-w button {position: absolute;left: 62%;background: #C5BCBC;}
+.day8-w button {position: absolute;left: 72%;background: #C5BCBC;}
+.day9-w button {position: absolute;left: 82%;background: #C5BCBC;}
+.day10-w button {position: absolute;left: 92%;background: #C5BCBC;}
+
+/*meanspage*/
+.header2 {
+  position: fixed;
+  background: #fefefe;
+  z-index: 997;
+  width: 100%;
+  height: 12%;
+  left: 10px;
+  top: 50px;
+  border-bottom: 1px solid #C6C6C7;
+}
+.means {
+  background: #fefefe;
+  position: absolute;
+  width: 51%;
+  height: 30%;
+  left: 25%;
+  top: 25%;
+  padding-left: 4.5%;
+}
+.means ul {
+  
+  color: #181616;
+  font-family: "Microsoft YaHei";
+}
+.searchedwordclass{
+  list-style:none;
+  font-size: 20px;
+  font-weight: bold;
+}
+.meanListclass{
+  list-style:none;
+  font-size: 16px;
+}
+.means button {
+  position: absolute;
+  top: 8%;
+  left: 70%;
+  width: 25%;
+  height: 10%;
+  background: #fefefe;
+  border: 1px solid #C6C6C7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.means button::before {
+  content: "添加到生词本";
+  font-size: 12px;
+  color: #302C2C;
+  font-family: "Microsoft YaHei";
+}
+.means button:hover {border: 1px solid #C90F1D;}
+.means button:hover::before {color: #C90F1D;}
+
+ul {
+  list-style-type:none;
+  font-size: 16px;
+  color: #3D3E42;
+  font-family: "Microsoft YaHei";
+}
+
+.newword {
+  background: #fefefe;
+  position: absolute;
+  width: 40%;
+  height: 30%;
+  left: 30%;
+  top: 35%;
+  padding-left: 4.5%;
+  padding-top: 3%;
+  border-top: 2px solid #C90F1D;
+  border-radius: 3px;
+}
+
+hr{
+  color: #CF747C;
+  width: 90%;
+}
+.newword button {
+  background: #DFCDCD;
+  width: 110%;
+  height: 7%;
+  border: 1px solid #C6C6C7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.newword button::before {
+  content: "删除记录";
+  font-size: 12px;
+  color: #302C2C;
+  font-family: "Microsoft YaHei";
+}
+```
+  
+## 我的活动量化
+> 活动量化数据截止到2017-1-11,23:59.
+>到诸如 https://github.com/DEIT2014/teamXexercise/graphs/contributors 这样的地址中（替换teamXexercise为你自己所在小组）查看你的活动状态,方法是：  
+![contributorpng](https://cloud.githubusercontent.com/assets/1710178/21607012/4f254246-d1ee-11e6-9eaf-4c9f21ccb572.png)
+
+>到诸如https://github.com/DEIT2014/team2exercise/issues 中查询你的issure状态，方法是
+![yourissue](https://cloud.githubusercontent.com/assets/1710178/21606985/1d1b7e28-d1ee-11e6-9baa-a822675d66d5.png)
+
+>查询后作类似如下描述，即你做了多少次commit，修改增加了多少，修改删除了多少，做了多少次issues    
+
+>  **姓名/学号/29 commits / 1,954 ++ / 669 --/10 issues/**  
+
+## 我的issue活动
+>在这里列出所有你参与的issue活动，包括你发起的问题，你回答的问题，你可以使用贴图展示，例子：
+![myissues](https://cloud.githubusercontent.com/assets/1710178/21607127/0b4ba550-d1ef-11e6-8e4c-9306ce07a7d4.png)
+
+
+# 我的自评
+> 请你对自己的工作进行自评。
+> 如果用**一整天8小时**时间计算，你有信心再用多少天完成你未目前完成的功能？
+
+# 关于打印md文档为pdf
+>比部分是指导你如何打印你的这个文档为pdf文档的说明，不属于模板。
+- 下载按照有道云笔记，请自行搜索安装。
+- 打开软件后新建一个markdown文件，如图
+![newmdpng](https://cloud.githubusercontent.com/assets/1710178/21608376/192e708c-d1f7-11e6-870f-81c23f8e2bef.png)
+
+- 把你的markdown源文件放进去，并查看预览效果。如图
+![editmd](https://cloud.githubusercontent.com/assets/1710178/21608386/2898f0c4-d1f7-11e6-800b-5d73499dfd4c.png)
+
+- 在该文件列表上右键打印，如图。
+![printmd](https://cloud.githubusercontent.com/assets/1710178/21608392/2fc22be0-d1f7-11e6-88c8-5014ba28f24d.png)
+
+- 建议大家自行搜索按照foxit reader，它会带一个虚拟的pdf文件打印机，选择它就可以打印出pdf文档了，然后你就可以纸质版打印该pdf提交了。
+![print2pdf](https://cloud.githubusercontent.com/assets/1710178/21608409/39c50d4c-d1f7-11e6-8c2d-441e5f92a61f.png)
+
+- 各位自己设计打印一个封面。
