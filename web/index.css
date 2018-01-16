@@ -426,13 +426,13 @@ ul {
   top: 35%;
   padding-left: 4.5%;
   padding-top: 3%;
-  border-top: 2px solid #C90F1D;
   border-radius: 3px;
 }
 
 hr{
   color: #CF747C;
-  width: 100%;
+  width: 120%;
+  left: 20%;
 }
 .newword button {
   background: #DFCDCD;
@@ -447,4 +447,10 @@ hr{
   font-size: 12px;
   color: #302C2C;
   font-family: "Microsoft YaHei";
+}
+.newword table {
+  border: 2px solid #C90F1D;
+  width: 85%;
+  position: absolute;
+  left: 8%;
 }
