@@ -979,39 +979,24 @@ hr{
 ```
   
 ## 我的活动量化
-> 活动量化数据截止到2017-1-11,23:59.
->到诸如 https://github.com/DEIT2014/teamXexercise/graphs/contributors 这样的地址中（替换teamXexercise为你自己所在小组）查看你的活动状态,方法是：  
-![contributorpng](https://cloud.githubusercontent.com/assets/1710178/21607012/4f254246-d1ee-11e6-9eaf-4c9f21ccb572.png)
+> 活动量化数据截止到2017底  ，2018年数据都没生成图片
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/1%20(2).png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/2%20(2).png)
+  
 
->到诸如https://github.com/DEIT2014/team2exercise/issues 中查询你的issure状态，方法是
-![yourissue](https://cloud.githubusercontent.com/assets/1710178/21606985/1d1b7e28-d1ee-11e6-9baa-a822675d66d5.png)
-
->查询后作类似如下描述，即你做了多少次commit，修改增加了多少，修改删除了多少，做了多少次issues    
-
->  **姓名/学号/29 commits / 1,954 ++ / 669 --/10 issues/**  
+>  **李佳璇/10154507104/20 commits / 1830 ++ / 429 --/2 issues/**  
 
 ## 我的issue活动
->在这里列出所有你参与的issue活动，包括你发起的问题，你回答的问题，你可以使用贴图展示，例子：
-![myissues](https://cloud.githubusercontent.com/assets/1710178/21607127/0b4ba550-d1ef-11e6-8e4c-9306ce07a7d4.png)
+>所有commmit
+
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/3%20(2).png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/4.png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/5.png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/6.png)
+![myissues](https://github.com/ECNU-DEIT-2015/DICTIONARY/blob/Xuan_report/doc/pic/7.png)
 
 
 # 我的自评
 > 请你对自己的工作进行自评。
 > 如果用**一整天8小时**时间计算，你有信心再用多少天完成你未目前完成的功能？
 
-# 关于打印md文档为pdf
->比部分是指导你如何打印你的这个文档为pdf文档的说明，不属于模板。
-- 下载按照有道云笔记，请自行搜索安装。
-- 打开软件后新建一个markdown文件，如图
-![newmdpng](https://cloud.githubusercontent.com/assets/1710178/21608376/192e708c-d1f7-11e6-870f-81c23f8e2bef.png)
-
-- 把你的markdown源文件放进去，并查看预览效果。如图
-![editmd](https://cloud.githubusercontent.com/assets/1710178/21608386/2898f0c4-d1f7-11e6-800b-5d73499dfd4c.png)
-
-- 在该文件列表上右键打印，如图。
-![printmd](https://cloud.githubusercontent.com/assets/1710178/21608392/2fc22be0-d1f7-11e6-88c8-5014ba28f24d.png)
-
-- 建议大家自行搜索按照foxit reader，它会带一个虚拟的pdf文件打印机，选择它就可以打印出pdf文档了，然后你就可以纸质版打印该pdf提交了。
-![print2pdf](https://cloud.githubusercontent.com/assets/1710178/21608409/39c50d4c-d1f7-11e6-8c2d-441e5f92a61f.png)
-
-- 各位自己设计打印一个封面。
