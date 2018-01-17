@@ -4,21 +4,245 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Myconference</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DICTIONARY</title>
   <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
-  <h1>Portmanteaux</h1>
+<body> 
+  <div id="head" class="header">
+    <div>
+      <img src="pic/cidian.png"  /> 
+      <div class="Index-c"><button id="Index" type="button"></button></div>
+      <div class="Ielts-c"><button id="Ielts" type="button"></button></div>
+      <div class="Cet4-c"><button id="Cet4" type="button"></button></div>
+      <div class="Cet6-c"><button id="Cet6" type="button"></button></div>
+      <div class="NewWord-c"><button id="NewWord" type="button"></button></div>
+      </div>
+<!--     <div class="user-name">
+      <p>Hello, User</p>
+      </div>   
+    --> 
+    <div class="user" id="user">
+      <div class="Login-c"><button id="Login" type="submit"></button></div>
+      <div class="Register-c"><button id="Register" type="submit"></button></div>
+    </div> 
+    </div>
 
-  <button id="getData">Get data</button>
-  </br></br>
-  <input id="search" type="text" />
-  <button id="search_word">search word</button>
+<!--不动的搜索框，可以在雅思，四六级，生词本界面都可以搜索单词-->
+<div id="searchedword_div" style="display:none">  
+  <div id="header2">
+    <div class="header2">
+        <div class="bar6">
+            <div class="pform">
+                <input id="search1" type="text" placeholder="请输入您要搜索的内容">
+                <button id="search_word1" type="submit" ></button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
 
-  <ul id="wordList">
-  </ul>
-  <div id="response"></div>
+<!--生词界面，目前是生词本的list-->
+    <div id="newwordpage" style="display:none">  
+       
+    <div class="newword">
+    <table id="sample_table_id">
+        <tr>
+          <td class="text">
+            生词本
+          </td>
+          <td>
+              <button id="delete-all" type="button" style="float:right"> </button>
+          </td>
+        </tr>
+        <tr>        
+          <td>
+            <p id="attention"></p>
+          <ul id="sample_list_id" style="list-style-type:none" title="鼠标单击删除生词" ></ul>
+          </td>  
+        </tr>
+      </table>
+     
+    </div>
+    </div>
+
+
+<!--首页，可以移动的搜索框仅在首页有效-->
+  <div id="firstpage">
+    <br></br><br></br><br></br>
+    <p align="center">
+      <img src="pic/dictionary.png" width="400" height="70" />
+    </p>
+    </br></br>
+    <div class="bar6">
+      <div class="pform">
+          <input id="search" type="text" placeholder="请输入您要搜索的内容">
+          <button id="search_word" type="submit" ></button>
+      </div>
+    </div> 
+    </div>
+
+<!--搜索结果的div-->
+    <div class="means" id="mean_div" style="display:none">
+      <table>
+        <tr>
+          <td>
+              <ul class="searchedwordclass" id="searchedword">
+          </td>
+          <td>
+             <div  style="display:none" id="add_div"><image src="pic/addpic.png"  title="已添加到生词本" width="30" height="30" /></div>
+          </td>
+        </tr>
+      </table>  
+      </ul>
+      <br>
+        <ul class="meanListclass" id="meanList">
+        </ul>
+        <br>
+        <hr color="#CF747C">
+        <br>
+        <ul class="searchedwordclass" id="searchedsent"></ul>
+        <br>
+        <ul class="meanListclass" id="sentList">
+        </ul>
+        <div id="response"></div>
+        <button id="add-newword" type="button" style="float:right"></button>
+        <br>
+        <br>
+      </div>
+  
+ 
+<!--雅思单词界面-->
+    <div id="wordspage" style="display:none">
+      <div class="block">
+        <div class="ielts"><img src="pic/IELTS.png" /></div>
+      <div id="1day" style="display:block">
+        <div class="firstblock">
+          <img src="pic/2.gif"/>
+          <ol id="firstlist" type="2" > 
+          </ol>
+          <div class="image" id="firstlist_label1" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+          <div id="firstlist_button1"><button id="firstbutton1"></button></div>
+         </div>
+        <div class="secondblock">
+          <img src="pic/3.gif"/>
+          <ol id="secondlist" type="2">
+          </ol>
+          <div class="image" id="secondlist_label1" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+          <div id="secondlist_button1"><button id="secondbutton1"></button></div>
+         </div>
+        <div class="thirdblock">
+          <img src="pic/4.gif"/>
+          <ol id="thirdlist" type="2">
+          </ol>
+          <div class="image" id="thirdlist_label1" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+          <div id="thirdlist_button1"><button id="thirdbutton1"></button></div>
+         </div>
+        <div class="fourthblock">
+          <img src="pic/5.gif"/>  
+          <ol id="fourthlist" type="2">
+          </ol>
+          <div class="image" id="fourthlist_label1" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+          <div id="fourthlist_button1"><button id="fourthbutton1"></button></div> 
+         </div>
+      </div>
+
+      <div id="2day" style="display:none">
+          <div class="firstblock">
+              <img src="pic/2.gif"/>
+              <ol id="firstlist2" type="2" > 
+              </ol>
+              <div class="image" id="firstlist_label2" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+              <div id="firstlist_button2"><button id="firstbutton2"></button></div>
+             </div>
+            <div class="secondblock">
+              <img src="pic/3.gif"/>
+              <ol id="secondlist2" type="2">
+              </ol>
+              <div class="image" id="secondlist_label2" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+              <div id="secondlist_button2"><button id="secondbutton2"></button></div>
+             </div>
+            <div class="thirdblock">
+              <img src="pic/4.gif"/>
+              <ol id="thirdlist2" type="2">
+              </ol>
+              <div class="image" id="thirdlist_label2" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+              <div id="thirdlist_button2"><button id="thirdbutton2"></button></div>
+             </div>
+            <div class="fourthblock">
+              <img src="pic/5.gif"/>  
+              <ol id="fourthlist2" type="2">
+              </ol>
+              <div class="image" id="fourthlist_label2" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+              <div id="fourthlist_button2"><button id="fourthbutton2"></button></div> 
+             </div>
+          
+        </div>
+
+        <div id="3day" style="display:none">
+            <div class="firstblock">
+                <img src="pic/2.gif"/>
+                <ol id="firstlist3" type="2" > 
+                </ol>
+                <div class="image" id="firstlist_label3" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+                <div id="firstlist_button3"><button id="firstbutton3"></button></div>
+               </div>
+              <div class="secondblock">
+                <img src="pic/3.gif"/>
+                <ol id="secondlist3" type="2">
+                </ol>
+                <div class="image" id="secondlist_label3" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+                <div id="secondlist_button3"><button id="secondbutton3"></button></div>
+               </div>
+              <div class="thirdblock">
+                <img src="pic/4.gif"/>
+                <ol id="thirdlist3" type="2">
+                </ol>
+                <div class="image" id="thirdlist_label3" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+                <div id="thirdlist_button3"><button id="thirdbutton3"></button></div>
+               </div>
+              <div class="fourthblock">
+                <img src="pic/5.gif"/>  
+                <ol id="fourthlist3" type="2">
+                </ol>
+                <div class="image" id="fourthlist_label3" style="display:none"><img src="pic/finished.jpg" title="已完成"/></div>
+                <div id="fourthlist_button3"><button id="fourthbutton3"></button></div> 
+               </div>    
+          </div>
+
+      </div>
+
+      <div class="day">
+        <div id="day1red" style="display:block"><div class="day1-c"><button id="day1red-button">1</button></div></div>
+        <div id="day2red" style="display:block"><div class="day2-c"><button id="day2red-button">2</button></div></div>
+        <div id="day3red" style="display:block"><div class="day3-c"><button id="day3red-button">3</button></div></div>
+        <div id="day4red" style="display:block"><div class="day4-c"><button id="day4red-button">4</button></div></div>
+        <div id="day5red" style="display:block"><div class="day5-c"><button id="day5red-button">5</button></div></div>
+        <div id="day6red" style="display:block"><div class="day6-c"><button id="day6red-button">6</button></div></div>
+        <div id="day7red" style="display:block"><div class="day7-c"><button id="day7red-button">7</button></div></div>
+        <div id="day8red" style="display:block"><div class="day8-c"><button id="day8red-button">8</button></div></div>
+        <div id="day9red" style="display:block"><div class="day9-c"><button id="day9red-button">9</button></div></div>
+        <div id="day10red" style="display:block"><div class="day10-c"><button id="day10red-button">10</button></div></div>
+
+        <div id="day1white" style="display:none"><div class="day1-w"><button id="day1white-button">1</button></div></div>
+        <div id="day2white" style="display:none"><div class="day2-w"><button id="day2white-button">2</button></div></div>
+        <div id="day3white" style="display:none"><div class="day3-w"><button id="day3white-button">3</button></div></div>
+        <div id="day4white" style="display:none"><div class="day4-w"><button id="day4white-button">4</button></div></div>
+        <div id="day5white" style="display:none"><div class="day5-w"><button id="day5white-button">5</button></div></div>
+        <div id="day6white" style="display:none"><div class="day6-w"><button id="day6white-button">6</button></div></div>
+        <div id="day7white" style="display:none"><div class="day7-w"><button id="day7white-button">7</button></div></div>
+        <div id="day8white" style="display:none"><div class="day8-w"><button id="day8white-button">8</button></div></div>
+        <div id="day9white" style="display:none"><div class="day9-w"><button id="day9white-button">9</button></div></div>
+        <div id="day10white" style="display:none"><div class="day10-w"><button id="day10white-button">10</button></div></div>
+      </div>
+
+     </div>
+
+    
+
+
+
   <script type="application/dart" src="index.dart"></script>
   <script src="packages/browser/dart.js"></script>
 </body>
